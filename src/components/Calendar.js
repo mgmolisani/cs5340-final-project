@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import CalendarHeader from './CalendarHeader';
 import CalendarDay from './CalendarDay';
+import {data} from '../model/Data';
 
 const style = {
     container: {
@@ -47,6 +48,10 @@ export default class Calendar
             );
         }
         return days;
+    }
+
+    getRecipes() {
+        return data.recipes
     }
 
     render() {
