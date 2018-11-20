@@ -19,7 +19,7 @@ const UOM = {
     'CUP': {
         id: 4,
         displayName: 'cup',
-        shortName: 'c'
+        shortName: 'cup'
     },
     'PT': {
         id: 5,

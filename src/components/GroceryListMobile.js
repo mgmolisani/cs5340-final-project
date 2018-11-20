@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {css} from 'emotion';
 import {data} from '../model/Data';
 
-export default class GroceryList
+export default class GroceryListMobile
     extends Component {
 
     static propTypes = {};
@@ -33,7 +33,7 @@ export default class GroceryList
                 <div className={css({
                     flex: '1 1 auto'
                 })}>
-                    {data.recipes[1].ingredients.map(ingredient => {
+                    {data.recipes[0].ingredients.map(ingredient => {
                         return (
                             <div className={css({
                                 display: 'flex',
@@ -73,17 +73,26 @@ export default class GroceryList
                                 })}>
                                     {ingredient.uom.shortName}
                                 </div>
+                                <div className={css({
+                                    width: '5%'
+                                })}>
+                                    <i className='fa fa-angle-left'/>
+                                </div>
                             </div>
                         );
                     })}
                 </div>
                 <div className={css({
                     flex: '0 0 auto',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                     fontSize: '1.5em',
                     padding: '0.5em',
                     height: '3em'
                 })}>
                     <div className={css({
+                        flex: '1 1 auto',
                         border: '1px solid black',
                         borderRadius: '5px',
                         height: '100%'
@@ -124,6 +133,18 @@ export default class GroceryList
                             </option>
                         </select>
                     </div>
+                    <button className={css({
+                        flex: '0 0 10%',
+                        marginLeft: 3,
+                        color: 'white',
+                        backgroundColor: 'red',
+                        cursor: 'pointer',
+                        border: 0,
+                        borderRadius: '5px',
+                        height: '100%'
+                    })}>
+                        <i className='fa fa-plus'/>
+                    </button>
                 </div>
             </div>
         );

@@ -7,7 +7,8 @@ import moment from 'moment';
 import Header from './components/Header';
 import {css} from 'emotion';
 import MyRecipes from './components/MyRecipes';
-import GroceryList from './components/GroceryList';
+import GroceryListMobile from './components/GroceryListMobile';
+import GroceryListDesktop from './components/GroceryListDesktop';
 
 export default class App
     extends Component {
@@ -40,11 +41,12 @@ export default class App
                 flexDirection: 'column',
                 height: '100%'
             })}>
-                {/*<Header/>
+               {/* <Header/>
                 <div className={css({
                     display: 'flex',
                     flex: '1 1 auto',
                 })}>
+                    <GroceryListDesktop/>
                     <Calendar selections={this.state.selections}
                               handleDaySelection={this.handleDaySelection}/>
                     <RecipeList schedule={data.schedule.filter(scheduleItem => {
@@ -54,7 +56,7 @@ export default class App
                     })}/>
                     <MyRecipes/>
                 </div>*/}
-                <GroceryList/>
+                <GroceryListMobile/>
                 {/*<AddToCartModal/>*/}
             </div>
         );
