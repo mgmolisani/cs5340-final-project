@@ -7,15 +7,17 @@ export default class IngredientsComponent extends React.Component {
 
     renderAllIng() {
         if (this.props.ingredients) {
+            let x = 0;
             let ing = this.props.ingredients.map((value) => {
-                    return <li
-                        class="list-group-item list-group-item-action"> {value.name} : {value.quantity}{value.uom.displayName} </li>
+                x++;
+                    return <li key={x}
+                        className="list-group-item list-group-item-action">
+                        {value.name} : {value.quantity}{value.uom.displayName} </li>
                 }
             );
             return ing;
         }
     }
-
 
 
     render() {
