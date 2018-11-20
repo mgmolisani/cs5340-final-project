@@ -19,7 +19,7 @@ export default class CookingSideBar extends React.Component {
                 {/*<div className="row" style={{margin:10}}>*/}
                 {/*<UtensilsComponent utensils={this.props.recipe.utensils}/>*/}
                 {/*</div> */}
-                <div className="flex-container" style={{margin: 10, marginTop: 200}}>
+                <div style={{position:"absolute", bottom:32}}>
                     <i className="fa fa-chevron-left btn-lg"
                        style={{backgroundColor: "red", borderColor: "red", color: "white"}}>
                         <a className=" btn-lg"
