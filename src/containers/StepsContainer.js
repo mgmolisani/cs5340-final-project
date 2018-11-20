@@ -47,9 +47,9 @@ export default class StepsContainer extends React.Component {
                      }}>
                     <h1>{this.props.recipe.name} </h1>
                 </div>
-                <div style={{overflowY: "auto", height: "100vh"}}>
+                <div style={{ height:"100vh"}}>
 
-                    <div>
+                    <div style={{overflowY: "scroll", position:"relative",height:"90vh"}}>
                         < ul className="list-group">
                             {this.renderAllSteps()}
                         </ul>

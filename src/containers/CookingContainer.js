@@ -23,7 +23,7 @@ export default class CookingContainer extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid" >
+            <div className="container-fluid h-100" style={{overflow:"hidden"}}>
                 <div className="row" >
                     <div className="col-lg-3, col-md-3" style={{borderRightStyle:"solid", marginTop:10}}>
                         <CookingSideBar recipe={this.state.recipe}/>
