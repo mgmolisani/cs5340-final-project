@@ -1,38 +1,40 @@
-import React from 'react'
-import {data} from '../model/Data'
+import React from 'react';
+import {data} from '../model/Data';
 import CookingSideBar from "./CookingSideBar";
 import StepsContainer from "./StepsContainer";
+import {css} from 'emotion';
 
 export default class CookingContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.getRecpie = this.getRecpie.bind(this);
+        this.getRecipe = this.getRecipe.bind(this);
         this.state = {
-            recipe: ''
-        }
+            recipe: {}
+        };
     }
 
     componentDidMount() {
-        this.getRecpie(0)
+        this.getRecipe(0);
     }
 
-    getRecpie = (id) => {
-        var recipe = data.recipes[id];
+    getRecipe = (id) => {
+        const recipe = data.recipes[id];
         this.setState({recipe});
-    }
+    };
 
     render() {
         return (
-            <div className="container-fluid h-100" style={{overflow:"hidden"}}>
-                <div className="row" >
-                    <div className="col-lg-3, col-md-3" style={{borderRightStyle:"solid", marginTop:10}}>
-                        <CookingSideBar recipe={this.state.recipe}/>
-                    </div>
-                    <div className="col-lg-9, col-md-9" style={{marginTop:10, paddingLeft:0}}>
-                        <StepsContainer recipe={this.state.recipe}/>
-                    </div>
+            <div className={css({
+                display: 'flex',
+                width: '100%'
+            })}>
+                <div className={css({
+                    flex: '0 0 25%'
+                })}>
+                    <CookingSideBar recipe={this.state.recipe}/>
                 </div>
+                <StepsContainer recipe={this.state.recipe}/>
             </div>
-        )
+        );
     }
 }

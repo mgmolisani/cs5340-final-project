@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import {css} from 'emotion';
 
 export default class StepItemComponent extends React.Component {
     constructor(props) {
@@ -7,103 +7,107 @@ export default class StepItemComponent extends React.Component {
 
     }
 
-
-    render() {
-        return (
-
-            <div>
-                {this.props.selected !== this.props.step.order ?
-                    <div >
-                    <li className="list-group-item"
-                        style={{
-                            fontSize: 35,
-                            margin:5,
-                            backgroundColor: "#cccccc",
-                            border:"solid"
-                        }}>
-                        <div className="flex-container" style={{display: "flex"}}>
-                            {this.props.selected > this.props.step.order ?
-                                <div>
-                                    <i className="fa  fa-check-circle fa-lg"
-                                       onClick={() => this.props.setOrder(this.props.step.order)}
-                                       style={{color: "red"}}></i>
-                                </div>
-
-                                :
-                                <div className="flex-container" style={{
-                                    display:"flex",
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    width: 40,
-                                    height: 40,
-                                    borderRadius: 20,
-                                    backgroundColor: " #D9D9D9",
-                                    borderStyle: "solid",
-                                    flexShrink: 0,
-                                    justifyContent:"center",
-                                    alignItems:"center"
-                                }}>
-                                    <div style={{fontSize: 30}}>{this.props.step.order}</div>
-
-                                </div>
-                            }
-                            <div style={{flexShrink: 1, marginLeft: 10}}>
-                                {this.props.step.info}
-                            </div>
-                        </div>
-
-                    </li>
+    renderInactiveStep() {
+        return <div className={css({
+            display: 'flex',
+            padding: '0.5em 2em',
+            fontSize: '2.5em',
+            color: '#505050',
+            textShadow: '0px 1px 0px rgba(255,255,255,.5)'
+        })}>
+            <div className={css({
+                flex: '0 0 auto'
+            })}>
+                {this.props.selected > this.props.step.order
+                    ? <div>
+                        <i className={'fa fa-check-circle-o'}
+                           onClick={() => this.props.setOrder(this.props.step.order)}
+                           style={{
+                               color: 'red',
+                               fontSize: '1.5em',
+                           }}/>
                     </div>
-                    :
-
-                    <li className="list-group-item list-group-item-action"
-                        style={{fontSize: 40, border:"solid", marginTop:5, marginBottom:5, marginLeft:1}}>
-
-                        <div>
-                            <div className="flex-container" style={{display: "flex"}}>
-                                <div className="flex-container" style={{
-                                    display: "flex",
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    width: 40,
-                                    height: 40,
-                                    borderRadius: 20,
-                                    backgroundColor: " #f2f2f2",
-                                    borderStyle: "solid",
-                                    flexShrink: 0,
-                                    justifyContent:"center",
-                                    alignItems:"center"
-
-                                }}>
-                                    <div style={{ fontSize: 30}}>{this.props.step.order}</div>
-                                </div>
-                                <div style={{flexShrink: 1, marginLeft: 10}}>
-                                    {this.props.step.info}
-                                </div>
-                            </div>
-                            <div className="flex-container" style={{display: "flex", justifyContent: "flex-end"}}>
-                                {this.props.step.order !== this.props.max
-                                    ?
-                                    <button className="btn-outline-success btn-lg"
-                                            style={{fontWeight: "bold"}} onClick={this.props.next}>Next
-                                    </button>
-                                    :
-                                    <button className="btn btn-lg"
-                                            style={{
-                                                fontWeight: "bolder",
-                                                backgroundColor: "red",
-                                                color: "white",
-                                                borderColor: "red"
-                                            }}>Finish
-                                    </button>
-                                }
-                            </div>
-                        </div>
-
-                    </li>
+                    : <div className={css({
+                        display: 'flex',
+                        width: '1.5em',
+                        height: '1.5em',
+                        borderRadius: '0.75em',
+                        borderWidth: 7,
+                        borderStyle: 'solid',
+                        justifyContent: "center",
+                        alignItems: "center"
+                    })}>
+                        {this.props.step.order}
+                    </div>
                 }
             </div>
-
-        )
+            <div className={css({
+                flex: '1 1 auto',
+                paddingLeft: '1em'
+            })}>
+                {this.props.step.info}
+            </div>
+        </div>;
     }
-}
+
+    renderActiveStep() {
+        return <div style={{
+            display: 'flex',
+            fontSize: '3em',
+            margin: '0.5em 0',
+            padding: '0.75em',
+            borderRadius: '0.5em',
+            backgroundColor: 'white',
+            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)'
+        }}>
+            <div className={css({
+                flex: '0 0 auto'
+            })}>
+                <div className={css({
+                    display: 'flex',
+                    width: '1.5em',
+                    height: '1.5em',
+                    borderRadius: '0.75em',
+                    borderWidth: 7,
+                    borderStyle: 'solid',
+                    justifyContent: "center",
+                    alignItems: "center"
+                })}>
+                    {this.props.step.order}
+                </div>
+            </div>
+            <div className={css({
+                flex: '1 1 auto',
+                paddingLeft: '1em'
+            })}>
+                {this.props.step.info}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center'
+                }}>
+                    <button className={css({
+                        color: 'white',
+                        backgroundColor: 'red',
+                        cursor: 'pointer',
+                        border: 0,
+                        borderRadius: '0.5em',
+                        whiteSpace: 'nowrap',
+                        padding: '0.5em',
+                        marginTop: '0.75em',
+                        fontSize: 18
+                    })}
+                            onClick={this.props.step.order !== this.props.max ? this.props.next : null}>
+                        {this.props.step.order !== this.props.max ? 'Next' : 'Finish'}
+                    </button>
+                </div>
+            </div>
+        </div>;
+    }
+
+    render() {
+        return this.props.selected !== this.props.step.order
+            ? this.renderInactiveStep()
+            : this.renderActiveStep();
+    }
+};

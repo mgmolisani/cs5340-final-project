@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default class IngredientsComponent extends React.Component {
     constructor(props) {
@@ -7,21 +7,18 @@ export default class IngredientsComponent extends React.Component {
 
     renderAllIng() {
         if (this.props.ingredients) {
-            let ing = this.props.ingredients.map((value) => {
+            return this.props.ingredients.map((value) => {
                     return <li
-                        class="list-group-item list-group-item-action"> {value.name} : {value.quantity}{value.uom.displayName} </li>
+                        className="list-group-item list-group-item-action"> {value.name} : {value.quantity}{value.uom.displayName} </li>;
                 }
             );
-            return ing;
         }
     }
-
-
 
     render() {
         return (
             <div>
-                < ul className="list-group" style={{width: "142%"}}>
+                <ul className="list-group" style={{width: "142%"}}>
                     <li className="list-group-item active" style={{backgroundColor: "red", borderColor: "red"}}>
                         <h3>INGREDIENTS </h3>
                     </li>
@@ -30,6 +27,6 @@ export default class IngredientsComponent extends React.Component {
 
             </div>
 
-        )
+        );
     }
 }
