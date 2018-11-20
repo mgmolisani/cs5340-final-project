@@ -1,64 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CalendarEvent from './CalendarEvent';
+import {css} from 'emotion';
 
 const CalendarDay = props => {
-    const events = [
-        {
-            title: 'Recipe 1',
-            type: 'Pizza'
-        }
-    ];
-
-    const style = {
-        container: {
+    return (
+        <div className={css({
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center'
-        },
-        date: {
-            base: {
-                color: 'blue'
-            },
-            disabled: {
-                color: 'red'
+            alignItems: 'center',
+            color: props.disabled ? 'pink' : 'darkred',
+            cursor: 'pointer',
+            '&:hover div': {
+                color: props.disabled ? 'inherit' : 'white',
+                backgroundColor: 'red'
             }
-        }
-    };
-
-    const styleDate = () => {
-        let computedStyle = {...style.date.base};
-        if (props.disabled) {
-            computedStyle = {
-                ...computedStyle,
-                ...style.date.disabled
-            }
-        }
-        return computedStyle;
-    };
-
-    return (
-        <div style={style.container}>
-            <h1 style={styleDate()}>
-                {props.date.date()}
-            </h1>
-            {events.map(event => {
-                if (!props.disabled) {
-                    return (
-                        <CalendarEvent key={event.title}
-                                       event={event}/>
-                    );
-                }
-                return null;
-            })}
+        })}
+             onClick={props.handleDaySelection}>
+            <div className={css({
+                width: '4em',
+                height: '4em',
+                textAlign: 'center',
+                fontSize: '1em',
+                borderRadius: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: props.selected ? 'white' : 'inherit',
+                backgroundColor: props.selected ? '#FF725C' : 'inherit'
+            })}>
+                <h1 className={css({
+                    margin: 0
+                })}>
+                    {props.date.date()}
+                </h1>
+            </div>
         </div>
     );
 };
 
 CalendarDay.propTypes = {
     date: PropTypes.object.isRequired,
-    disabled: PropTypes.bool.isRequired
+    disabled: PropTypes.bool.isRequired,
+    selected: PropTypes.bool.isRequired,
+    handleDaySelection: PropTypes.func.isRequired
 };
 
 CalendarDay.defaultProps = {};

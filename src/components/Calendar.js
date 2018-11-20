@@ -1,25 +1,31 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
-import CalendarHeader from './CalendarHeader';
+import CalendarWeekdays from './CalendarWeekdays';
 import CalendarDay from './CalendarDay';
-import {data} from '../model/Data';
+import CalendarHeader from './CalendarHeader';
 
 const style = {
     container: {
+        flex: '1 1 auto',
         display: 'grid',
-        height: '100%',
-        grid: 'auto 1fr / auto'
+        grid: 'auto 1fr / auto',
+        height: '100%'
     },
     days: {
         display: 'grid',
-        grid: 'auto-flow / repeat(7, 1fr)'
+        grid: 'auto-flow / repeat(7, 1fr)',
+        color: 'grey'
     }
 };
 
 export default class Calendar
     extends Component {
 
-    static propTypes = {};
+    static propTypes = {
+        selections: PropTypes.arrayOf(PropTypes.object).isRequired,
+        handleDaySelection: PropTypes.func.isRequired
+    };
 
     static defaultProps = {};
 
@@ -32,6 +38,18 @@ export default class Calendar
                 year: now.year()
             }
         };
+        this.changeMonth = this.changeMonth.bind(this);
+    }
+
+    changeMonth(value) {
+        const {date} = this.state;
+        const newMonth = moment(date).add(value, 'months');
+        this.setState({
+            date: {
+                month: newMonth.month(),
+                year: newMonth.year()
+            }
+        });
     }
 
     renderDays() {
@@ -41,25 +59,38 @@ export default class Calendar
         for (let i = moment(start); i.isSameOrBefore(end); i.add(1, 'days')) {
             const date = moment(i);
             const disabled = this.state.date.month !== date.month();
+            const selected = this.props.selections.some(selection => {
+                return selection.isSame(date, 'day');
+            });
             days.push(
                 <CalendarDay key={date}
                              date={date}
-                             disabled={disabled}/>
+                             disabled={disabled}
+                             selected={selected}
+                             handleDaySelection={() => {
+                                 !disabled ? this.props.handleDaySelection(date) : null;
+                             }}/>
             );
         }
         return days;
     }
 
-    getRecipes() {
-        return data.recipes
-    }
-
     render() {
+        const {month, year} = this.state.date;
         return (
-            <div style={style.container}>
-                <CalendarHeader/>
-                <div style={style.days}>
-                    {this.renderDays()}
+            <div style={{
+                flex: '1 1 auto',
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <CalendarHeader month={month}
+                                year={year}
+                                changeMonth={this.changeMonth}/>
+                <div style={style.container}>
+                    <CalendarWeekdays/>
+                    <div style={style.days}>
+                        {this.renderDays()}
+                    </div>
                 </div>
             </div>
         );

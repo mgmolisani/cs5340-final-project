@@ -136,23 +136,23 @@ const macNotCheese = {
 };
 
 const plan1 = {
-    recipe: macNCheese,
-    date: moment('11-17-2018')
+    recipes: [macNCheese],
+    date: moment('2018-11-17')
 };
 
 const plan2 = {
-    recipe: macNotCheese,
-    date: moment('11-17-2018')
+    recipes: [macNCheese, macNotCheese],
+    date: moment('2018-11-18')
 };
 
 const plan3 = {
-    recipe: macNCheese,
-    date: moment('11-21-2018')
+    recipes: [macNCheese, macNotCheese],
+    date: moment('2018-11-21')
 };
 
 const plan4 = {
-    recipe: macNotCheese,
-    date: moment('11-21-2018')
+    recipes: [macNotCheese],
+    date: moment('2018-11-23')
 };
 
 const schedule = [plan1, plan2, plan3, plan4];
