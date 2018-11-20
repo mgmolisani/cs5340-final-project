@@ -53,7 +53,8 @@ export default class StepsContainer extends React.Component {
                     textAlign: 'center',
                     margin: 0,
                     padding: '1em',
-                    whiteSpace: 'nowrap'
+                    whiteSpace: 'nowrap',
+                    fontWeight:'bolder'
                 })}>
                     {this.props.recipe.name}
                 </div>

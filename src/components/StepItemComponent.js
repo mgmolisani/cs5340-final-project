@@ -11,7 +11,7 @@ export default class StepItemComponent extends React.Component {
         return <div className={css({
             display: 'flex',
             padding: '0.5em 2em',
-            fontSize: '2.5em',
+            fontSize: '1.5em',
             color: '#505050',
             textShadow: '0px 1px 0px rgba(255,255,255,.5)'
         })}>
@@ -35,9 +35,11 @@ export default class StepItemComponent extends React.Component {
                         borderWidth: 7,
                         borderStyle: 'solid',
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
                     })}>
-                        {this.props.step.order}
+                        <div style={{fontSize:15}}>
+                            { this.props.step.order}
+                        </div>
                     </div>
                 }
             </div>
@@ -53,7 +55,7 @@ export default class StepItemComponent extends React.Component {
     renderActiveStep() {
         return <div style={{
             display: 'flex',
-            fontSize: '3em',
+            fontSize: '2.2em',
             margin: '0.5em 0',
             padding: '0.75em',
             borderRadius: '0.5em',
@@ -72,7 +74,7 @@ export default class StepItemComponent extends React.Component {
                     borderStyle: 'solid',
                     justifyContent: "center",
                     alignItems: "center"
-                })}>
+                })}  onClick={this.props.next}>
                     {this.props.step.order}
                 </div>
             </div>

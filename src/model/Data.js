@@ -19,7 +19,7 @@ const UOM = {
     'CUP': {
         id: 4,
         displayName: 'cup',
-        shortName: 'cup'
+        shortName: 'c'
     },
     'PT': {
         id: 5,
@@ -105,24 +105,37 @@ const largeDish = {
     quantity: 1
 };
 
+const macStep5 = {
+    info: 'Melt butter or margarine in a skillet over medium heat. Add breadcrumbs and brown. Spread over the macaroni and cheese to cover.',
+    order: 5
+};
+const macStep4 = {
+    info: 'Put macaroni in large casserole dish, and pour sauce over macaroni. Stir well.',
+    order: 4
+};
+const macStep3 = {
+    info: 'Stir in cheeses, and cook over low heat until cheese is melted and the sauce is a little thick.',
+    order: 3
+};
+
 const macStep2 = {
-    info: 'Cook the shit!?',
+    info: 'In a saucepan, melt butter or margarine over medium heat.',
     order: 2
 };
 
 const macStep1 = {
-    info: 'In sauce pan, melt butter over medium heat.',
+    info: 'Cook macaroni according to the package directions. Drain.',
     order: 1
 };
 
 const macNCheese = {
     id: 1,
-    name: 'Mac and cheese',
+    name: 'Mac and Cheese',
     description: 'Gooey and delicious two cheese blend.',
     icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/14/0/WU-0103_mac-and-cheese_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382541000580.jpeg',
     ingredients: [elbowMac, flour, cheddar, parm, butter],
     utensils: [pan, largeDish],
-    steps: [macStep1, macStep2]
+    steps: [macStep1, macStep2, macStep3, macStep4]
 };
 
 const macNotCheese = {
@@ -136,23 +149,23 @@ const macNotCheese = {
 };
 
 const plan1 = {
-    recipes: [macNCheese],
-    date: moment('2018-11-17')
+    recipe: macNCheese,
+    date: moment('11-17-2018')
 };
 
 const plan2 = {
-    recipes: [macNCheese, macNotCheese],
-    date: moment('2018-11-18')
+    recipe: macNotCheese,
+    date: moment('11-17-2018')
 };
 
 const plan3 = {
-    recipes: [macNCheese, macNotCheese],
-    date: moment('2018-11-21')
+    recipe: macNCheese,
+    date: moment('11-21-2018')
 };
 
 const plan4 = {
-    recipes: [macNotCheese],
-    date: moment('2018-11-23')
+    recipe: macNotCheese,
+    date: moment('11-21-2018')
 };
 
 const schedule = [plan1, plan2, plan3, plan4];
