@@ -1,27 +1,111 @@
-import React from 'react'
-
+import React from 'react';
+import {css} from 'emotion';
 
 const RecipeCard = (props) => {
 
-    return(
-        <div className="dib br3 pa2 ma2 grow bw1 b--gray ba shadow-5 w-95">
-            <div className="inline-flex bg-light-red br3 ba b--black w-95"
-                style={{height: 175, width: 350}}>
-                <img className="w-50 h-100 br b--black"
-                     style={{objectFit: 'cover'}}
-                     src={props.icon}/>
-                <h2 className="pl2 pr2 tl white w-50 h-100"
-                    style={{fontWeight: 'bold', fontFamily: 'Trebuchet MS'}}>{props.name}</h2>
+    return (
+        <div className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            margin: '1em',
+            borderRadius: '0.5em',
+            backgroundColor: 'white',
+            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
+            height: '25em',
+            width: '25em',
+            minWidth: '25em',
+            overflow: 'hidden'
+        })}
+             onClick={() => props.selectRecipe(props.id)}>
+            <div className={css({
+                flex: '0 0 30%',
+                overflow: 'hidden'
+            })}>
+                <img className={css({
+                    objectFit: 'cover',
+                    transform: 'scale(1.1)',
+                    filter: 'blur(5px)'
+                })}
+                     src={props.icon}
+                     alt={props.name}/>
             </div>
-            <div>
-                <h4>{props.description}</h4>
-            </div>
-            <div className="bt b--black pa2">
-                <i className=" fl fa fa-play-circle fa-3x red"/>
-                <a href='' className="tc pt3 fr red" style={{fontWeight: 'bold', fontSize: 'large'}}>Details ></a>
+            <div className={css({
+                flex: '0 0 auto',
+                height: '70%'
+            })}>
+                <div className={css({
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'relative',
+                    height: '10em',
+                    width: '10em',
+                    margin: 'auto',
+                    top: '-5em',
+                    bottom: '5em',
+                    backgroundColor: 'white',
+                    borderRadius: '5em'
+                })}>
+                    <img className={css({
+                        objectFit: 'cover',
+                        height: '95%',
+                        width: '95%',
+                        borderRadius: '5em'
+                    })}
+                         src={props.icon}
+                         alt={props.name}/>
+                </div>
+                <div className={css({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    top: '-10em',
+                    height: '100%',
+                    paddingTop: '5em',
+                    textAlign: 'center',
+                })}>
+                    <h2 className={css({
+                        flex: '0 0 auto',
+                        width: '60%',
+                        padding: '0.5em 0',
+                        margin: 'auto'
+                    })}>
+                        {props.name}
+                    </h2>
+                    <p className={css({
+                        flex: '1 1 auto',
+                        fontSize: '1.25em',
+                        padding: '0.25em 0.5em'
+                    })}>
+                        {props.description}
+                    </p>
+                    <div className={css({
+                        flex: '0 0 auto',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignContent: 'center',
+                        padding: '1em'
+                    })}>
+                        <i className='fa fa-play-circle fa-3x'
+                           style={{
+                               color: 'red'
+                           }}/>
+                        <a href=''
+                           className={css({
+                               color: 'red',
+                               paddingTop: 13
+                           })}>
+                            Details <span className='fa fa-caret-right'
+                                          style={{
+                                              color: 'red'
+                                          }}/>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     )
+        ;
 
 };
 
