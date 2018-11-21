@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
+import 'font-awesome/css/font-awesome.min.css';
+import moment from 'moment';
+import {css} from 'emotion';
+import Header from './components/Header';
 import Calendar from './components/Calendar';
 import RecipeList from './components/RecipeList';
 import {data} from './model/Data';
-import 'font-awesome/css/font-awesome.min.css';
-import moment from 'moment';
-import Header from './components/Header';
-import {css} from 'emotion';
-import MyRecipes from './components/MyRecipes';
-import GroceryListMobile from './components/GroceryListMobile';
-import GroceryListDesktop from './components/GroceryListDesktop';
 
 export default class App
     extends Component {
@@ -39,14 +36,15 @@ export default class App
             <div className={css({
                 display: 'flex',
                 flexDirection: 'column',
-                height: '100%'
+                height: '100%',
+                overflowX: 'hidden'
             })}>
-               {/* <Header/>
+                <Header/>
                 <div className={css({
                     display: 'flex',
                     flex: '1 1 auto',
                 })}>
-                    <GroceryListDesktop/>
+                    {/*/!*<GroceryListDesktop/>*/}
                     <Calendar selections={this.state.selections}
                               handleDaySelection={this.handleDaySelection}/>
                     <RecipeList schedule={data.schedule.filter(scheduleItem => {
@@ -54,9 +52,8 @@ export default class App
                             return scheduleItem.date.isSame(selection, 'day');
                         });
                     })}/>
-                    <MyRecipes/>
-                </div>*/}
-                <GroceryListMobile/>
+                    {/*<MyRecipes/>*!/*/}
+                </div>
                 {/*<AddToCartModal/>*/}
             </div>
         );

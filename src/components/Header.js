@@ -32,7 +32,8 @@ const Header = props => {
             alignItems: 'center',
             color: 'white',
             backgroundColor: 'red',
-            boxShadow: '0px 0px 25px 0px rgba(0,0,0,0.75)'
+            boxShadow: '0px 0px 25px 0px rgba(0,0,0,0.75)',
+            zIndex: 10
         })}>
             <div className={css({
                 fontSize: '2em',
@@ -49,16 +50,16 @@ const Header = props => {
                 <div className={menuItem}>
                     <a className={menuItemLink}
                        href={''}>
-                        My Recipes&nbsp;
+                        My Recipes
                     </a>
-                    <i className='fa fa-cutlery fa-2x'/>
+                    <i className='fa fa-cutlery fa-2x fa-fw'/>
                 </div>
                 <div className={menuItem}>
                     <a className={menuItemLink}
                        href={''}>
                         Grocery List
                     </a>
-                    <i className='fa fa-list-alt fa-2x'/>
+                    <i className='fa fa-list-alt fa-2x fa-fw'/>
                 </div>
             </div>
         </div>
