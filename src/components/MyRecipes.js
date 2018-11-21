@@ -9,8 +9,7 @@ class MyRecipes extends Component {
         super();
         this.state = {
             recipes: [],
-            search: '',
-            buttonText: 'Add New Recipe'
+            search: ''
         };
 
         this.selectRecipe = this.selectRecipe.bind(this);
@@ -24,21 +23,41 @@ class MyRecipes extends Component {
         this.setState({recipes: recipes});
     }
 
-    updateButton() {
+    renderButton() {
+        let buttonText = 'Add New Recipe';
+        let icon = 'fa fa-plus fa-2x fa-fw';
         if (this.state.recipes.filter(r => r.selected === true).length > 0) {
-            this.setState({buttonText: 'Schedule Recipe(s)'});
-        } else {
-            this.setState({buttonText: 'Add New Recipe'});
+            buttonText = 'Schedule Recipe(s)';
+            icon = 'fa fa-calendar fa-2x fa-fw';
         }
+        return <button className={css({
+            fontSize: '2em',
+            height: '5em',
+            width: '8em',
+            padding: '0.75em',
+            borderRadius: '100vh',
+            color: 'white',
+            backgroundColor: 'red'
+        })}>
+            <div className={css({
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            })}>
+                {buttonText}
+                <i className={icon}/>
+            </div>
+        </button>;
     }
 
     selectRecipe(id) {
         for (let i = 0; i < this.state.recipes.length; i++) {
             if (this.state.recipes[i].id === id) {
-                this.state.recipes[i].selected = !this.state.recipes[i].selected;
+                const recipes = [...this.state.recipes];
+                recipes[i].selected = !recipes[i].selected;
+                this.setState({recipes});
             }
         }
-        this.updateButton();
     }
 
     onSearchChange = (event) => {
@@ -66,17 +85,7 @@ class MyRecipes extends Component {
                     bottom: '2em',
                     right: '2em'
                 })}>
-                    <button className={css({
-                        fontSize: '2em',
-                        height: '5em',
-                        width: '5em',
-                        padding: '0.5em',
-                        borderRadius: '2.5em',
-                        color: 'white',
-                        backgroundColor: 'red'
-                    })}>
-                        {this.state.buttonText}
-                    </button>
+                    {this.renderButton()}
                 </div>
             </div>
         );
