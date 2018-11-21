@@ -24,28 +24,26 @@ class MyRecipes extends Component {
     }
 
     renderButton() {
-        let buttonText = 'Add New Recipe';
-        let icon = 'fa fa-plus fa-2x fa-fw';
-        if (this.state.recipes.filter(r => r.selected === true).length > 0) {
-            buttonText = 'Schedule Recipe(s)';
-            icon = 'fa fa-calendar fa-2x fa-fw';
-        }
+        const isScheduled = this.state.recipes.filter(r => r.selected === true).length > 0;
         return <button className={css({
             fontSize: '2em',
             height: '5em',
             width: '8em',
             padding: '0.75em',
             borderRadius: '100vh',
-            color: 'white',
-            backgroundColor: 'red'
+            zIndex: 10,
+            color: isScheduled ? 'red' : 'white',
+            backgroundColor: isScheduled ? 'white' : 'red',
+            border: '3px solid red',
+            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
         })}>
             <div className={css({
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
             })}>
-                {buttonText}
-                <i className={icon}/>
+                {isScheduled ? 'Schedule Recipe(s)' : 'Add New Recipe'}
+                <i className={isScheduled ? 'fa fa-calendar fa-2x fa-fw' : 'fa fa-plus fa-2x fa-fw'}/>
             </div>
         </button>;
     }
