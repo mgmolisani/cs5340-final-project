@@ -1,61 +1,62 @@
 import React from 'react';
 import {css} from 'emotion';
 
-
 export default class IngredientsComponent extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    renderAllIng() {
+    render() {
         if (this.props.ingredients) {
             return this.props.ingredients.map((value) => {
-                    return(<div className={css({
-                        flex: '0 0 auto',
-                        fontSize: '1em',
-                        height: '2em',
-                        textAlign: 'center',
-                        margin: '0.5em',
-                        padding: '0.5em',
-                        whiteSpace: 'nowrap',
-                        fontWeight: 'bolder'
-                    }) }>
-                        <div className="list-group-item list-group-item-action">
-                            {value.name} : {value.quantity}{value.uom.displayName} </div>
-                    </div>)
+                    return (
+                        <div className={css({
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: '1.5em',
+                            padding: '1em',
+                            width: '100%',
+                            borderBottom: '2px solid grey',
+                            '&:hover': {
+                                backgroundColor: 'lightgrey'
+                            }
+                        })}>
+                            <div className={css({
+                                width: '10%',
+                                textAlign: 'center'
+                            })}>
+                                <span className='fa fa-circle-o'/>
+                            </div>
+                            <div className={css({
+                                flex: '1 1 auto',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap',
+                                textOverflow: 'ellipsis',
+                                justifySelf: 'start'
+                            })}>
+                                {value.name}
+                            </div>
+                            <div className={css({
+                                flex: '1 1 auto',
+                                textAlign: 'right',
+                                margin: '0 0.5em',
+                                justifySelf: 'end'
+                            })}>
+                                {value.quantity}
+                            </div>
+                            <div className={css({
+                                width: '15%',
+                                margin: '0 0.5em',
+                                justifySelf: 'start'
+                            })}>
+                                {value.uom.shortName}
+                            </div>
+                        </div>
+                    );
                 }
             );
+        } else {
+            return null;
         }
-    }
-
-    render() {
-        return (
-            <div>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <div className={css({
-                            flex: '0 0 auto',
-                            fontSize: '1.5em',
-                            height: '2.5em',
-                            color: 'white',
-                            backgroundColor: 'darkred',
-                            textAlign: 'center',
-                            margin: '0.5em',
-                            padding: '0.5em',
-                            whiteSpace: 'nowrap',
-                            fontWeight: 'bolder',
-                            border: "solid",
-                            borderRadius: '1em'
-                        })}>
-                            INGREDIENTS
-                        </div>
-
-                    </li>
-                    {this.renderAllIng()}
-                </ul>
-
-            </div>
-
-        );
     }
 }

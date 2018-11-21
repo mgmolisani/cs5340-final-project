@@ -34,9 +34,10 @@ export default class App
             <div className={css({
                 display: 'flex',
                 flexDirection: 'column',
-                height: '100%'
+                height: '100%',
+                overflowX: 'hidden'
             })}>
-                 <Header/>
+                <Header/>
                 <div className={css({
                     display: 'flex',
                     flex: '1 1 auto',

@@ -1,6 +1,4 @@
-import React from 'react'
-import {data} from '../model/Data'
-import UtensilsComponent from "../components/UtensilsComponent";
+import React from 'react';
 import IngredientsComponent from "../components/IngredientsComponent";
 import {css} from 'emotion';
 
@@ -10,19 +8,43 @@ export default class CookingSideBar extends React.Component {
 
     }
 
-
     render() {
         return (
-            <div>
-                <div className="row">
+            <div className={css({
+                flex: '0 0 25%',
+                display: 'flex',
+                flexDirection: 'column'
+            })}>
+                <div className={css({
+                    display: 'flex',
+                    flex: '0 0 auto',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderBottom: '2px solid grey',
+                    fontSize: '2em',
+                    height: '3em'
+                })}>
+                    <div className={css({
+                        flex: '0 0 auto',
+                        color: 'white',
+                        backgroundColor: 'darkred',
+                        border: '3px solid darkred',
+                        textAlign: 'center',
+                        padding: '0.25em 0.75em',
+                        borderRadius: '100vh',
+                        whiteSpace: 'nowrap'
+                    })}>
+                        Ingredients
+                    </div>
+                </div>
+                <div className={css({
+                    flex: '1 1 auto'
+                })}>
                     <IngredientsComponent ingredients={this.props.recipe.ingredients}/>
                 </div>
-                {/*<div className="row" style={{margin:10}}>*/}
-                {/*<UtensilsComponent utensils={this.props.recipe.utensils}/>*/}
-                {/*</div> */}
-
-                <div style={{position: "absolute", bottom: 32, marginLeft: 25, width: 20}}>
-
+                <div className={css({
+                    flex: '0 0 auto'
+                })}>
                     <button className={css({
                         color: 'white',
                         backgroundColor: 'red',
@@ -31,16 +53,15 @@ export default class CookingSideBar extends React.Component {
                         borderRadius: '0.3em',
                         whiteSpace: 'nowrap',
                         padding: '0.5em',
-                        marginTop: '0.75em',
-                        fontSize: 30
+                        margin: '0.75em',
+                        fontSize: '2em'
                     })}>
-                        <i  className="fa fa-chevron-left"  style={{marginRight: 5}}/>
-                        BACK
+                        <i className="fa fa-chevron-left" style={{marginRight: 5}}/>
+                        Back
                     </button>
-
                 </div>
             </div>
 
-        )
+        );
     }
 }

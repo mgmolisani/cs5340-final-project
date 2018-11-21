@@ -50,16 +50,16 @@ const Header = props => {
                 <div className={menuItem}>
                     <a className={menuItemLink}
                        href={''}>
-                        My Recipes&nbsp;
+                        My Recipes
                     </a>
-                    <i className='fa fa-cutlery fa-2x'/>
+                    <i className='fa fa-cutlery fa-2x fa-fw'/>
                 </div>
                 <div className={menuItem}>
                     <a className={menuItemLink}
                        href={''}>
                         Grocery List
                     </a>
-                    <i className='fa fa-list-alt fa-2x'/>
+                    <i className='fa fa-list-alt fa-2x fa-fw'/>
                 </div>
             </div>
         </div>

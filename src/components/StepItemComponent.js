@@ -4,29 +4,27 @@ import {css} from 'emotion';
 export default class StepItemComponent extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     renderInactiveStep() {
         return <div className={css({
             display: 'flex',
             padding: '0.5em 2em',
-            fontSize: '1.5em',
-            color: '#505050',
+            fontSize: '2.5em',
+            color: '#404040',
             textShadow: '0px 1px 0px rgba(255,255,255,.5)'
         })}>
             <div className={css({
                 flex: '0 0 auto'
             })}>
                 {this.props.selected > this.props.step.order
-                    ? <div>
-                        <i className={'fa fa-check-circle-o'}
-                           onClick={() => this.props.setOrder(this.props.step.order)}
-                           style={{
-                               color: 'red',
-                               fontSize: '1.5em',
-                           }}/>
-                    </div>
+                    ? <i className={'fa fa-check-circle-o'}
+                         onClick={() => this.props.setOrder(this.props.step.order)}
+                         style={{
+                             color: 'red',
+                             fontSize: '1.75em',
+                             boxSizing: 'border-box'
+                         }}/>
                     : <div className={css({
                         display: 'flex',
                         width: '1.5em',
@@ -37,9 +35,7 @@ export default class StepItemComponent extends React.Component {
                         justifyContent: "center",
                         alignItems: "center",
                     })}>
-                        <div style={{fontSize:15}}>
-                            { this.props.step.order}
-                        </div>
+                        {this.props.step.order}
                     </div>
                 }
             </div>
@@ -55,7 +51,7 @@ export default class StepItemComponent extends React.Component {
     renderActiveStep() {
         return <div style={{
             display: 'flex',
-            fontSize: '2.2em',
+            fontSize: '3em',
             margin: '0.5em 0',
             padding: '0.75em',
             borderRadius: '0.5em',
@@ -74,7 +70,7 @@ export default class StepItemComponent extends React.Component {
                     borderStyle: 'solid',
                     justifyContent: "center",
                     alignItems: "center"
-                })}  onClick={this.props.next}>
+                })} onClick={this.props.next}>
                     {this.props.step.order}
                 </div>
             </div>
@@ -97,10 +93,10 @@ export default class StepItemComponent extends React.Component {
                         whiteSpace: 'nowrap',
                         padding: '0.5em',
                         marginTop: '0.75em',
-                        fontSize: 18
+                        fontSize: '0.65em'
                     })}
-                            onClick={this.props.step.order !== this.props.max ? this.props.next : null}>
-                        {this.props.step.order !== this.props.max ? 'Next' : 'Finish'}
+                            onClick={!this.props.isLast ? this.props.next : null}>
+                        {this.props.isLast ? 'Finish' : 'Next'}
                     </button>
                 </div>
             </div>

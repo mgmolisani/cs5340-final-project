@@ -28,11 +28,7 @@ export default class CookingContainer extends React.Component {
                 display: 'flex',
                 width: '100%'
             })}>
-                <div className={css({
-                    flex: '0 0 25%'
-                })}>
-                    <CookingSideBar recipe={this.state.recipe}/>
-                </div>
+                <CookingSideBar recipe={this.state.recipe}/>
                 <StepsContainer recipe={this.state.recipe}/>
             </div>
         );

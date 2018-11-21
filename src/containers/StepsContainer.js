@@ -16,9 +16,11 @@ export default class StepsContainer extends React.Component {
     renderAllSteps() {
         if (this.props.recipe.steps) {
             return this.props.recipe.steps.map((value) => {
-                    return <StepItemComponent step={value} selected={this.state.selected}
+                    return <StepItemComponent step={value}
+                                              selected={this.state.selected}
                                               setOrder={(order) => this.setSelected(order)}
-                                              max={this.props.recipe.steps.length} next={() => this.nextButton()}/>;
+                                              isLast={this.props.recipe.steps.length === value.order}
+                                              next={() => this.nextButton()}/>;
 
                 }
             );
@@ -53,8 +55,7 @@ export default class StepsContainer extends React.Component {
                     textAlign: 'center',
                     margin: 0,
                     padding: '1em',
-                    whiteSpace: 'nowrap',
-                    fontWeight:'bolder'
+                    whiteSpace: 'nowrap'
                 })}>
                     {this.props.recipe.name}
                 </div>
