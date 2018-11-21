@@ -15,7 +15,7 @@ const RecipeCardContainer = ({recipes, selectRecipe}) => {
     });
 
     return (
-        <div style={{
+        <div className={css({
             flex: '1 1 auto',
             display: 'flex',
             flexWrap: 'wrap',
@@ -24,7 +24,7 @@ const RecipeCardContainer = ({recipes, selectRecipe}) => {
             boxShadow: 'inset 0px 0px 25px 0px rgba(0,0,0,0.75)',
             backgroundColor: 'darkgrey',
             justifyContent: 'center'
-        }}>
+        })}>
             {myRecipes}
         </div>
     );

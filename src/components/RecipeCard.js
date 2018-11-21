@@ -9,7 +9,7 @@ const RecipeCard = (props) => {
             flexDirection: 'column',
             margin: '1em',
             borderRadius: '0.5em',
-            backgroundColor: 'white',
+            backgroundColor: props.selected ? '#F44F46' : 'white',
             boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
             height: '25em',
             width: '25em',
@@ -43,7 +43,7 @@ const RecipeCard = (props) => {
                     margin: 'auto',
                     top: '-5em',
                     bottom: '5em',
-                    backgroundColor: 'white',
+                    backgroundColor: props.selected ? '#F44F46' : 'white',
                     borderRadius: '5em'
                 })}>
                     <img className={css({
@@ -63,6 +63,7 @@ const RecipeCard = (props) => {
                     height: '100%',
                     paddingTop: '5em',
                     textAlign: 'center',
+                    color: props.selected ? 'white' : 'black',
                 })}>
                     <h2 className={css({
                         flex: '0 0 auto',
@@ -88,25 +89,23 @@ const RecipeCard = (props) => {
                     })}>
                         <i className='fa fa-play-circle fa-3x'
                            style={{
-                               color: 'red'
+                               color: props.selected ? 'white' : 'red',
                            }}/>
                         <a href=''
                            className={css({
-                               color: 'red',
+                               color: props.selected ? 'white' : 'red',
                                paddingTop: 13
                            })}>
                             Details <span className='fa fa-caret-right'
                                           style={{
-                                              color: 'red'
+                                              color: props.selected ? 'white' : 'red',
                                           }}/>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    )
-        ;
-
+    );
 };
 
 export default RecipeCard;

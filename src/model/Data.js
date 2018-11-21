@@ -159,5 +159,5 @@ const schedule = [plan1, plan2, plan3, plan4];
 
 export const data = {
     schedule: schedule,
-    recipes: [macNCheese, macNotCheese, macNCheese, macNotCheese, macNCheese, macNotCheese, macNCheese, macNotCheese]
+    recipes: [macNCheese, macNotCheese]
 };

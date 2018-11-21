@@ -10,7 +10,7 @@ class MyRecipes extends Component {
         this.state = {
             recipes: [],
             search: '',
-            buttonText: 'Add Recipe'
+            buttonText: 'Add New Recipe'
         };
 
         this.selectRecipe = this.selectRecipe.bind(this);
@@ -28,7 +28,7 @@ class MyRecipes extends Component {
         if (this.state.recipes.filter(r => r.selected === true).length > 0) {
             this.setState({buttonText: 'Schedule Recipe(s)'});
         } else {
-            this.setState({buttonText: 'Add Recipe'});
+            this.setState({buttonText: 'Add New Recipe'});
         }
     }
 
@@ -55,15 +55,26 @@ class MyRecipes extends Component {
                 display: 'flex',
                 width: '100%',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                position: 'relative'
             })}>
                 <SearchBox search={this.onSearchChange}/>
                 <RecipeCardContainer recipes={filteredRecipes}
                                      selectRecipe={this.selectRecipe}/>
                 <div className={css({
-                    flex: '0 0 auto'
+                    position: 'fixed',
+                    bottom: '2em',
+                    right: '2em'
                 })}>
-                    <button>
+                    <button className={css({
+                        fontSize: '2em',
+                        height: '5em',
+                        width: '5em',
+                        padding: '0.5em',
+                        borderRadius: '2.5em',
+                        color: 'white',
+                        backgroundColor: 'red'
+                    })}>
                         {this.state.buttonText}
                     </button>
                 </div>
