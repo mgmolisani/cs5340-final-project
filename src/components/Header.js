@@ -2,26 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {css} from 'emotion';
 
-const menuItem = css({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '1.25em',
-    padding: '0 0.75em',
-    textAlign: 'center',
-    verticalAlign: 'middle',
-    whiteSpace: 'nowrap',
-});
 
-const menuItemLink = css({
-    display: 'block',
-    color: 'white',
-    textDecoration: 'none',
-    paddingRight: '0.5em',
-    '&:hover': {
-        textDecoration: 'underline'
-    }
-});
 
 const Header = props => {
     return (
