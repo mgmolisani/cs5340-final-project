@@ -29,7 +29,7 @@ export default class App
                     <Switch>
                         <Route path="/recipes" component={MyRecipes}/>
                         <Route path="/groceries" component={GroceryListDesktop}/>
-                        <Route path="/cooking/:id" componet={CookingContainer}/>
+                        <Route path="/cooking/:id" component={CookingContainer}/>
                         <Route path="/" component={HomeScreen}/>
                     </Switch>
                 </div>

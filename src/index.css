@@ -13,11 +13,3 @@ body,
 body {
     font-family: 'Fjalla One', sans-serif;
 }
-
-input,
-textarea,
-button,
-select {
-    font-size: inherit;
-    font-family: inherit;
-}
