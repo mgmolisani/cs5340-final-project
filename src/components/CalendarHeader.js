@@ -15,7 +15,7 @@ const style = {
 const CalendarHeader = props => {
     return (
         <div style={{
-            flex: '0 0 10em',
+            flex: '0 0 7em',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'

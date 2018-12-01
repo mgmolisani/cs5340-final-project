@@ -87,7 +87,8 @@ const RecipeCard = (props) => {
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignContent: 'center',
-                                    padding: '1em'
+                                    padding: '1em',
+                                    textDecoration: 'none'
                               })}>
                         <i className='fa fa-play-circle fa-3x'
                            style={{
