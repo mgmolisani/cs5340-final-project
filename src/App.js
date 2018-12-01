@@ -7,6 +7,8 @@ import Calendar from './components/Calendar';
 import RecipeList from './components/RecipeList';
 import {data} from './model/Data';
 import MyRecipes from './components/MyRecipes';
+import SchedulingModal from './components/SchedulingModal';
+import AddToCartModal from './components/AddToCartModal';
 
 export default class App
     extends Component {
@@ -55,6 +57,7 @@ export default class App
                     })}/>*/}
                     <MyRecipes/>
                 </div>
+                <SchedulingModal/>
                 {/*<AddToCartModal/>*/}
             </div>
         );

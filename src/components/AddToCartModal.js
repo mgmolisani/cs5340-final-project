@@ -25,7 +25,8 @@ export default class Modal
                 backgroundColor: 'rgba(0, 0, 0, 0.75)',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                zIndex: 999
             })}>
                 <div className={css({
                     backgroundColor: 'white',
