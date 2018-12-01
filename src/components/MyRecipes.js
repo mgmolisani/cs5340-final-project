@@ -70,6 +70,7 @@ class MyRecipes extends Component {
         return (
             <div className={css({
                 display: 'flex',
+                flex: '1 1 auto',
                 width: '100%',
                 flexDirection: 'column',
                 justifyContent: 'center',

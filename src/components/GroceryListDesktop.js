@@ -17,7 +17,7 @@ export default class GroceryListDesktop
     render() {
         return (
             <div className={css({
-                flex: '0 0 auto',
+                flex: '1 1 auto',
                 width: '100%',
                 minHeight: '100%',
                 display: 'flex',

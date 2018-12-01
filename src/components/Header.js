@@ -1,8 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {css} from 'emotion';
-
-
 
 const Header = props => {
     return (
@@ -19,23 +17,23 @@ const Header = props => {
         })}>
             <NavLink to="/"
                      className={css({
-                fontSize: '2em',
-                padding: '0 0.75em',
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                whiteSpace: 'nowrap',
-                color: 'white',
-                textDecoration: 'none',
+                         fontSize: '2em',
+                         padding: '0 0.75em',
+                         textAlign: 'center',
+                         verticalAlign: 'middle',
+                         whiteSpace: 'nowrap',
+                         color: 'white',
+                         textDecoration: 'none',
 
-            })}>
+                     })}>
                 <div className={css({
                     display: 'flex',
                     '&:hover span': {
                         transform: 'rotate(25deg)'
                     }
                 })}>
-                Marinara Hands
-                <span>✋</span>
+                    Marinara Hands
+                    <span>✋</span>
                 </div>
             </NavLink>
             <div className={css({
@@ -62,8 +60,8 @@ const Header = props => {
                                  textDecoration: 'underline'
                              }
                          })}>
-                        <span>My Recipes</span>
-                        <i className='fa fa-cutlery fa-2x fa-fw'/>
+                    <span>My Recipes</span>
+                    <i className='fa fa-cutlery fa-2x fa-fw'/>
                 </NavLink>
                 <NavLink to="/groceries"
                          className={css({
@@ -78,16 +76,16 @@ const Header = props => {
                              textDecoration: 'none',
                              color: 'white',
                              '&:hover span': {
-                                textDecoration: 'underline'
-                              }
+                                 textDecoration: 'underline'
+                             }
                          })}
                          activeClassName={css({
                              '&:span': {
                                  textDecoration: 'underline'
                              }
                          })}>
-                        <span>Grocery List</span>
-                        <i className='fa fa-list-alt fa-2x fa-fw'/>
+                    <span>Grocery List</span>
+                    <i className='fa fa-list-alt fa-2x fa-fw'/>
                 </NavLink>
             </div>
         </div>

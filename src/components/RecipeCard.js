@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {css} from 'emotion';
 
 const RecipeCard = (props) => {
@@ -82,18 +82,18 @@ const RecipeCard = (props) => {
                         {props.description}
                     </p>
                     <div className={css({
-                                    flex: '0 0 auto',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignContent: 'center',
-                                    padding: '1em',
-                                    textDecoration: 'none'
-                              })}>
+                        flex: '0 0 auto',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignContent: 'center',
+                        padding: '1em',
+                        textDecoration: 'none'
+                    })}>
                         <NavLink to={`/cooking/${props.id}`}>
-                        <i className='fa fa-play-circle fa-3x'
-                           style={{
-                               color: props.selected ? 'white' : 'red',
-                           }}/>
+                            <i className='fa fa-play-circle fa-3x'
+                               style={{
+                                   color: props.selected ? 'white' : 'red',
+                               }}/>
                         </NavLink>
                         <a href=''
                            className={css({

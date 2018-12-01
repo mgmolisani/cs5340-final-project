@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import moment from 'moment';
 import {css} from 'emotion';
-import Header from './Header';
 import Calendar from './Calendar';
 import RecipeList from './RecipeList';
 import {data} from '../model/Data';
@@ -35,26 +34,17 @@ export default class HomeScreen
         return (
             <div className={css({
                 display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-                overflowX: 'hidden'
+                flex: '1 1 auto',
             })}>
-                <div className={css({
-                    display: 'flex',
-                    flex: '1 1 auto',
-                })}>
-                    {/*/!*<GroceryListDesktop/>*/}
-                    <Calendar selections={this.state.selections}
-                              handleDaySelection={this.handleDaySelection}/>
-                    <RecipeList schedule={data.schedule.filter(scheduleItem => {
-                        return this.state.selections.some(selection => {
-                            return scheduleItem.date.isSame(selection, 'day');
-                        });
-                    })}/>
-                    {/*<MyRecipes/>*/}
-                </div>
-                {/*<SchedulingModal/>*/}
-                {/*<AddToCartModal/>*/}
+                {/*/!*<GroceryListDesktop/>*/}
+                <Calendar selections={this.state.selections}
+                          handleDaySelection={this.handleDaySelection}/>
+                <RecipeList schedule={data.schedule.filter(scheduleItem => {
+                    return this.state.selections.some(selection => {
+                        return scheduleItem.date.isSame(selection, 'day');
+                    });
+                })}/>
+                {/*<MyRecipes/>*/}
             </div>
         );
     }
