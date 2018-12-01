@@ -19,11 +19,12 @@ const RecipeListItem = props => {
                  style={{
                      height: '4em',
                      width: '4em',
+                     flex: '0 0 auto',
                      borderRadius: '0.5em',
                      objectFit: 'cover'
                  }}/>
             <div style={{
-                width: '100%',
+                flex: '0 0 auto',
                 padding: '0 0.5em'
             }}>
                 <h4 style={{
@@ -41,6 +42,7 @@ const RecipeListItem = props => {
             </div>
             <div style={{
                 display: 'flex',
+                flex: '1 1 0',
                 justifyContent: 'flex-end',
                 alignItems: 'center'
             }}>

@@ -18,6 +18,9 @@ input,
 textarea,
 button,
 select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
     font-size: inherit;
     font-family: inherit;
 }
