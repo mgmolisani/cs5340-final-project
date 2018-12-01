@@ -75,6 +75,11 @@ const Header = props => {
                              '&:hover span': {
                                  textDecoration: 'underline'
                              }
+                         })}
+                         activeClassName={css({
+                             '&:span': {
+                                 textDecoration: 'underline'
+                             }
                          })}>
                         <span>My Recipes</span>
                         <i className='fa fa-cutlery fa-2x fa-fw'/>
@@ -94,6 +99,11 @@ const Header = props => {
                              '&:hover span': {
                                 textDecoration: 'underline'
                               }
+                         })}
+                         activeClassName={css({
+                             '&:span': {
+                                 textDecoration: 'underline'
+                             }
                          })}>
                         <span>Grocery List</span>
                         <i className='fa fa-list-alt fa-2x fa-fw'/>
