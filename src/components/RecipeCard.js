@@ -81,8 +81,7 @@ const RecipeCard = (props) => {
                     })}>
                         {props.description}
                     </p>
-                    <NavLink to={`/cooking/${props.id}`}
-                             className={css({
+                    <div className={css({
                                     flex: '0 0 auto',
                                     display: 'flex',
                                     justifyContent: 'space-between',
@@ -90,10 +89,12 @@ const RecipeCard = (props) => {
                                     padding: '1em',
                                     textDecoration: 'none'
                               })}>
+                        <NavLink to={`/cooking/${props.id}`}>
                         <i className='fa fa-play-circle fa-3x'
                            style={{
                                color: props.selected ? 'white' : 'red',
                            }}/>
+                        </NavLink>
                         <a href=''
                            className={css({
                                color: props.selected ? 'white' : 'red',
@@ -104,7 +105,7 @@ const RecipeCard = (props) => {
                                               color: props.selected ? 'white' : 'red',
                                           }}/>
                         </a>
-                    </NavLink>
+                    </div>
                 </div>
             </div>
         </div>
