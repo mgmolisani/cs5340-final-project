@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import moment from 'moment';
 import {css} from 'emotion';
@@ -9,30 +10,12 @@ import {data} from './model/Data';
 import MyRecipes from './components/MyRecipes';
 import SchedulingModal from './components/SchedulingModal';
 import AddToCartModal from './components/AddToCartModal';
+import HomeScreen from './components/HomeScreen'
+import GroceryListDesktop from "./components/GroceryListDesktop";
 
 export default class App
     extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            selections: [moment()]
-        };
-        this.handleDaySelection = this.handleDaySelection.bind(this);
-    }
-
-    handleDaySelection(date) {
-        const selections = [...this.state.selections];
-        const match = selections.findIndex(selection => {
-            return selection.isSame(date, 'day');
-        });
-        if (match !== -1) {
-            selections.splice(match, 1);
-        } else {
-            selections.push(date);
-        }
-        this.setState({selections});
-    }
 
     render() {
         return (
@@ -43,22 +26,11 @@ export default class App
                 overflowX: 'hidden'
             })}>
                 <Header/>
-                <div className={css({
-                    display: 'flex',
-                    flex: '1 1 auto',
-                })}>
-                    {/*/!*<GroceryListDesktop/>*/}
-                    <Calendar selections={this.state.selections}
-                              handleDaySelection={this.handleDaySelection}/>
-                    <RecipeList schedule={data.schedule.filter(scheduleItem => {
-                        return this.state.selections.some(selection => {
-                            return scheduleItem.date.isSame(selection, 'day');
-                        });
-                    })}/>
-                    {/*<MyRecipes/>*/}
-                </div>
-                {/*<SchedulingModal/>*/}
-                {/*<AddToCartModal/>*/}
+                <Switch>
+                    <Route path="/myrecipes" component={MyRecipes}/>
+                    <Route path="/groceries" component={GroceryListDesktop}/>
+                    <Route path="/" component={HomeScreen}/>
+                </Switch>
             </div>
         );
     }
