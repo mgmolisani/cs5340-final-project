@@ -48,16 +48,16 @@ export default class App
                     flex: '1 1 auto',
                 })}>
                     {/*/!*<GroceryListDesktop/>*/}
-                    {/*<Calendar selections={this.state.selections}
+                    <Calendar selections={this.state.selections}
                               handleDaySelection={this.handleDaySelection}/>
                     <RecipeList schedule={data.schedule.filter(scheduleItem => {
                         return this.state.selections.some(selection => {
                             return scheduleItem.date.isSame(selection, 'day');
                         });
-                    })}/>*/}
-                    <MyRecipes/>
+                    })}/>
+                    {/*<MyRecipes/>*/}
                 </div>
-                <SchedulingModal/>
+                {/*<SchedulingModal/>*/}
                 {/*<AddToCartModal/>*/}
             </div>
         );
