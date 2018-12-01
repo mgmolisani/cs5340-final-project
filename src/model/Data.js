@@ -135,7 +135,7 @@ const macNCheese = {
     icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/14/0/WU-0103_mac-and-cheese_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382541000580.jpeg',
     ingredients: [elbowMac, flour, cheddar, parm, butter],
     utensils: [pan, largeDish],
-    steps: [macStep1, macStep2, macStep3, macStep4]
+    steps: [macStep1, macStep2, macStep3, macStep4, macStep4, macStep4, macStep4, macStep4, macStep4, macStep4]
 };
 
 const macNotCheese = {
@@ -150,21 +150,29 @@ const macNotCheese = {
 
 const plan1 = {
     recipes: [macNCheese],
+    currentStep: 0,
+    isFinished: false,
     date: moment('2018-11-17')
 };
 
 const plan2 = {
     recipes: [macNCheese, macNotCheese],
+    currentStep: 0,
+    isFinished: false,
     date: moment('2018-11-18')
 };
 
 const plan3 = {
     recipes: [macNCheese, macNotCheese],
+    currentStep: 0,
+    isFinished: false,
     date: moment('2018-11-21')
 };
 
 const plan4 = {
     recipes: [macNotCheese],
+    currentStep: 0,
+    isFinished: false,
     date: moment('2018-11-23')
 };
 

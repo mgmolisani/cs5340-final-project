@@ -7,20 +7,10 @@ import {css} from 'emotion';
 export default class CookingContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.getRecipe = this.getRecipe.bind(this);
         this.state = {
-            recipe: {}
+            recipe: data.schedule[0].recipes[0]
         };
     }
-
-    componentDidMount() {
-        this.getRecipe(0);
-    }
-
-    getRecipe = (id) => {
-        const recipe = data.recipes[id];
-        this.setState({recipe});
-    };
 
     render() {
         return (
