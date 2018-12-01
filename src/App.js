@@ -12,6 +12,7 @@ import SchedulingModal from './components/SchedulingModal';
 import AddToCartModal from './components/AddToCartModal';
 import HomeScreen from './components/HomeScreen'
 import GroceryListDesktop from "./components/GroceryListDesktop";
+import CookingContainer from "./containers/CookingContainer";
 
 export default class App
     extends Component {
@@ -27,8 +28,9 @@ export default class App
             })}>
                 <Header/>
                 <Switch>
-                    <Route path="/myrecipes" component={MyRecipes}/>
+                    <Route path="/recipes" component={MyRecipes}/>
                     <Route path="/groceries" component={GroceryListDesktop}/>
+                    <Route path="/cooking/:id" componet={CookingContainer}/>
                     <Route path="/" component={HomeScreen}/>
                 </Switch>
             </div>

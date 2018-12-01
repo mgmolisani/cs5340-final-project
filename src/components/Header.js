@@ -60,7 +60,7 @@ const Header = props => {
             <div className={css({
                 display: 'flex'
             })}>
-                <NavLink to="/myrecipes"
+                <NavLink to="/recipes"
                          className={css({
                              display: 'flex',
                              justifyContent: 'center',
