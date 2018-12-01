@@ -56,7 +56,7 @@ const Header = props => {
                              }
                          })}
                          activeClassName={css({
-                             '&:span': {
+                             '& span': {
                                  textDecoration: 'underline'
                              }
                          })}>
@@ -80,7 +80,7 @@ const Header = props => {
                              }
                          })}
                          activeClassName={css({
-                             '&:span': {
+                             '& span': {
                                  textDecoration: 'underline'
                              }
                          })}>
