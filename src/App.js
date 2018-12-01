@@ -9,6 +9,7 @@ import {data} from './model/Data';
 import MyRecipes from './components/MyRecipes';
 import SchedulingModal from './components/SchedulingModal';
 import AddToCartModal from './components/AddToCartModal';
+import CookingContainer from './containers/CookingContainer';
 
 export default class App
     extends Component {
@@ -47,15 +48,7 @@ export default class App
                     display: 'flex',
                     flex: '1 1 auto',
                 })}>
-                    {/*/!*<GroceryListDesktop/>*/}
-                    <Calendar selections={this.state.selections}
-                              handleDaySelection={this.handleDaySelection}/>
-                    <RecipeList schedule={data.schedule.filter(scheduleItem => {
-                        return this.state.selections.some(selection => {
-                            return scheduleItem.date.isSame(selection, 'day');
-                        });
-                    })}/>
-                    {/*<MyRecipes/>*/}
+                    <CookingContainer/>
                 </div>
                 {/*<SchedulingModal/>*/}
                 {/*<AddToCartModal/>*/}
