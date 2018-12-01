@@ -58,11 +58,11 @@ const Header = props => {
                              }
                          })}
                          activeClassName={css({
-                             '&:span': {
+                             '& span': {
                                  textDecoration: 'underline'
                              }
                          })}>
-                        <span>My Recipes</span>
+                        <span className="active">My Recipes</span>
                         <i className='fa fa-cutlery fa-2x fa-fw'/>
                 </NavLink>
                 <NavLink to="/groceries"
@@ -82,7 +82,7 @@ const Header = props => {
                               }
                          })}
                          activeClassName={css({
-                             '&:span': {
+                             '& span': {
                                  textDecoration: 'underline'
                              }
                          })}>
