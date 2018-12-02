@@ -60,7 +60,6 @@ class MyRecipes extends Component {
 
     onSearchChange = (event) => {
         this.setState({search: event.target.value});
-        console.log(this.state.search)
     };
 
     render() {
