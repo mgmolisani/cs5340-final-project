@@ -158,7 +158,7 @@ export default class GroceryListDesktop
                         })}>
                             <input placeholder={'Enter additional item'}
                                    className={css({
-                                       width: '70%',
+                                       width: '62.5%',
                                        border: 'none',
                                        height: '100%',
                                        padding: 5,
@@ -193,7 +193,7 @@ export default class GroceryListDesktop
                             </select>
                         </div>
                         <button className={css({
-                            flex: '0 0 5%',
+                            flex: '0 0 10%',
                             marginLeft: 3,
                             color: 'white',
                             backgroundColor: 'red',
