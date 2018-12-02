@@ -36,6 +36,53 @@ export default class GroceryListDesktop
                     boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)'
                 })}>
                     <div className={css({
+                        flex: '1 1 auto',
+                        backgroundColor: 'darkred',
+                        color: 'white'
+                    })}>
+                        <div className={css({
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: '1.5em',
+                            padding: '1em',
+                            width: '100%',
+                            borderBottom: '1px solid grey'
+                        })}>
+                            <div className={css({
+                                width: '10%',
+                                textAlign: 'center'
+                            })}>
+                            </div>
+                            <div className={css({
+                                flex: '1 1 auto',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap',
+                                textOverflow: 'ellipsis',
+                                justifySelf: 'start'
+                            })}>
+                                Ingredients
+                            </div>
+                            <div className={css({
+                                flex: '1 1 auto',
+                                textAlign: 'center',
+                                margin: '0 0.5em',
+                                justifySelf: 'start'
+                            })}>
+                                Quantity
+                            </div>
+                            <div className={css({
+                                width: '5%',
+                                margin: '0 0.5em'
+                            })}>
+                            </div>
+                            <div className={css({
+                                width: '5%',
+                                margin: '0 0.5em'
+                            })}>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={css({
                         flex: '1 1 auto'
                     })}>
                         {data.recipes[0].ingredients.map(ingredient => {
