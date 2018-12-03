@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {css} from 'emotion';
-import {data} from '../model/Data';
-import YesNoButton from './YesNoButton';
 
 export default class GroceryListDesktop
     extends Component {
@@ -38,7 +36,7 @@ export default class GroceryListDesktop
                     <div className={css({
                         flex: '1 1 auto'
                     })}>
-                        {data.recipes[0].ingredients.map(ingredient => {
+                        {this.prop.data.recipes[0].ingredients.map(ingredient => {
                             return (
                                 <div className={css({
                                     display: 'flex',

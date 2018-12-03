@@ -4,7 +4,8 @@ import StartRecipeButton from './StartRecipeButton';
 import AddToCartButton from './AddToCartButton';
 
 const RecipeListItem = props => {
-    const {name, description, icon} = props.recipe;
+    const scheduleId = props.scheduledRecipe.id;
+    const {name, description, icon} = props.scheduledRecipe.recipe;
     return (
         <div style={{
             display: 'flex',
@@ -47,14 +48,14 @@ const RecipeListItem = props => {
                 alignItems: 'center'
             }}>
                 <AddToCartButton/>
-                <StartRecipeButton/>
+                <StartRecipeButton id={scheduleId}/>
             </div>
         </div>
     );
 };
 
 RecipeListItem.propTypes = {
-    recipe: PropTypes.object.isRequired
+    scheduledRecipe: PropTypes.object.isRequired
 };
 
 RecipeListItem.defaultProps = {};

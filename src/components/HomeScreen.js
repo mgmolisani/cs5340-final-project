@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import 'font-awesome/css/font-awesome.min.css';
-import moment from 'moment';
 import {css} from 'emotion';
 import Calendar from './Calendar';
 import RecipeList from './RecipeList';
-import {data} from '../model/Data';
+import moment from 'moment';
 
 export default class HomeScreen
     extends Component {
@@ -12,22 +11,44 @@ export default class HomeScreen
     constructor(props) {
         super(props);
         this.state = {
-            selections: [moment()]
+            selectedRecipesByDate: []
         };
         this.handleDaySelection = this.handleDaySelection.bind(this);
     }
 
     handleDaySelection(date) {
-        const selections = [...this.state.selections];
-        const match = selections.findIndex(selection => {
-            return selection.isSame(date, 'day');
+        const {data} = this.props;
+        const selectedRecipesByDate = [...this.state.selectedRecipesByDate];
+        const match = selectedRecipesByDate.findIndex(selection => {
+            return selection.date.isSame(date, 'day');
         });
         if (match !== -1) {
-            selections.splice(match, 1);
+            selectedRecipesByDate.splice(match, 1);
+            this.setState({selectedRecipesByDate});
         } else {
-            selections.push(date);
+            data.findScheduledRecipesForDate(date)
+                .then(scheduledRecipes => this.setState((state, props) => ({
+                    selectedRecipesByDate: [
+                        ...state.selectedRecipesByDate,
+                        {
+                            date,
+                            recipes: scheduledRecipes
+                        }
+                    ]
+                })));
         }
-        this.setState({selections});
+    }
+
+    componentDidMount() {
+        const {data} = this.props;
+        const today = moment();
+        data.findScheduledRecipesForDate(moment())
+            .then(scheduledRecipes => this.setState((state, props) => ({
+                selectedRecipesByDate: [{
+                    date: today,
+                    recipes: scheduledRecipes
+                }]
+            })));
     }
 
     render() {
@@ -36,15 +57,9 @@ export default class HomeScreen
                 display: 'flex',
                 flex: '1 1 auto',
             })}>
-                {/*/!*<GroceryListDesktop/>*/}
-                <Calendar selections={this.state.selections}
+                <Calendar selections={this.state.selectedRecipesByDate.map(selection => selection.date)}
                           handleDaySelection={this.handleDaySelection}/>
-                <RecipeList schedule={data.schedule.filter(scheduleItem => {
-                    return this.state.selections.some(selection => {
-                        return scheduleItem.date.isSame(selection, 'day');
-                    });
-                })}/>
-                {/*<MyRecipes/>*/}
+                <RecipeList schedule={this.state.selectedRecipesByDate}/>
             </div>
         );
     }

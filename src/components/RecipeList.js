@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RecipeListDay from './RecipeListDay';
 import {css} from 'emotion';
-import AddToCartButton from './AddToCartButton';
 
 const RecipeList = props => {
     const hasSelection = () => {
@@ -32,9 +31,9 @@ const RecipeList = props => {
                 color: '#505050',
                 textShadow: '0px 1px 0px rgba(255,255,255,.5)'
             })}>
-                You do not have any recipes scheduled for the days you have selected.
+                You do not have any days selected. Use the calendar to select days.
                 <br/><br/>
-                Click on My Recipes to start scheduling meals.
+                Scheduled meals for the selected days will appear here.
             </h3>;
         }
     };
@@ -42,7 +41,7 @@ const RecipeList = props => {
     return (
         <div className={css({
             flex: '0 0 auto',
-            minWidth: '40em',
+            width: '40em',
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: 'darkgrey',
