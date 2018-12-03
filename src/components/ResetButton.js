@@ -16,7 +16,7 @@ const AddToCartButton = props => {
                 color: 'red'
             }
         })}>
-            <span className='fa fa-cart-plus fa-2x'/>
+            <span className='fa fa-refresh fa-2x'/>
         </button>
     );
 };

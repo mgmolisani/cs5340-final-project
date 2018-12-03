@@ -20,11 +20,11 @@ export default class StepItemComponent
     }
 
     componentDidMount() {
-        this.scrollIntoView()
+        this.scrollIntoView();
     }
 
     componentDidUpdate() {
-        this.scrollIntoView()
+        this.scrollIntoView();
     }
 
     setRef = element => this.ref = element;
@@ -117,7 +117,14 @@ export default class StepItemComponent
                         marginTop: '0.75em',
                         fontSize: '0.65em'
                     })}
-                            onClick={!this.props.isLast ? this.props.nextStep : null}>
+                            onClick={
+                                !this.props.isLast
+                                    ? event => {
+                                        event.preventDefault();
+                                        event.target.blur();
+                                        this.props.nextStep();
+                                    }
+                                    : null}>
                         {this.props.isLast ? 'Finish' : 'Next'}
                     </button>
                 </div>

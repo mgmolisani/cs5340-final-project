@@ -17,6 +17,11 @@ export default class CookingContainer extends React.Component {
         this.setToCurrentStep = this.setToCurrentStep.bind(this);
     }
 
+    finishRecipe() {
+        const {id, data} = this.props;
+        data.finishRecipe(id)
+    }
+
     nextStep() {
         const {recipe, currentStep} = this.state;
         const {id, data} = this.props;
@@ -27,7 +32,7 @@ export default class CookingContainer extends React.Component {
     }
 
     prevStep() {
-        const {recipe, currentStep} = this.state;
+        const {currentStep} = this.state;
         const {id, data} = this.props;
         if (currentStep > 1) {
             data.changeCurrentStep(id, currentStep - 1)
@@ -36,7 +41,6 @@ export default class CookingContainer extends React.Component {
     }
 
     setToCurrentStep(stepNumber) {
-        const {recipe} = this.state;
         const {id, data} = this.props;
         data.changeCurrentStep(id, stepNumber)
             .then(currentStep => this.setState({currentStep}));
@@ -62,10 +66,18 @@ export default class CookingContainer extends React.Component {
         data.findScheduledRecipeById(this.props.id)
             .then(scheduledRecipe => {
                 const {recipe, currentStep} = scheduledRecipe;
-                this.setState({
-                    recipe,
-                    currentStep
-                });
+                if (currentStep === 0) {
+                    data.changeCurrentStep(this.props.id, 1)
+                        .then(currentStep => this.setState({
+                            recipe,
+                            currentStep
+                        }));
+                } else {
+                    this.setState({
+                        recipe,
+                        currentStep
+                    });
+                }
             });
     }
 
