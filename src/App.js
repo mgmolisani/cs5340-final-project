@@ -11,7 +11,10 @@ import CookingContainer from "./containers/CookingContainer";
 export default class App
     extends Component {
 
+    static data = {};
+
     render() {
+        console.log(App.data);
         return (
             <div className={css({
                 display: 'flex',
@@ -27,10 +30,18 @@ export default class App
                     overflowX: 'hidden'
                 })}>
                     <Switch>
-                        <Route path="/recipes" component={MyRecipes}/>
-                        <Route path="/groceries" component={GroceryListDesktop}/>
-                        <Route path="/cooking/:id" component={CookingContainer}/>
-                        <Route path="/" component={HomeScreen}/>
+                        <Route path="/recipes">
+                            {() => <MyRecipes/>}
+                        </Route>
+                        <Route path="/groceries">
+                            {() => <GroceryListDesktop/>}
+                        </Route>
+                        <Route path="/cooking/:id">
+                            {({match}) => <CookingContainer id={parseInt(match.params.id)}/>}
+                        </Route>
+                        <Route path="/">
+                            {() => <HomeScreen/>}
+                        </Route>
                     </Switch>
                 </div>
             </div>

@@ -29,7 +29,7 @@ const Header = props => {
                 <div className={css({
                     display: 'flex',
                     '&:hover span': {
-                        transform: 'rotate(25deg)'
+                        transform: 'rotate(25deg) translateX(5px)'
                     }
                 })}>
                     Marinara Hands

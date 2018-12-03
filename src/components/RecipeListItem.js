@@ -2,9 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StartRecipeButton from './StartRecipeButton';
 import AddToCartButton from './AddToCartButton';
+import ResetButton from './ResetButton';
 
 const RecipeListItem = props => {
-    const {name, description, icon} = props.recipe;
+    const scheduleId = props.scheduledRecipe.id;
+    const {recipe, currentStep, isFinished} = props.scheduledRecipe;
+    const {name, description, icon} = recipe;
+
+    const renderStartButtons = () => {
+        if (currentStep === 0 && !isFinished) {
+            return <StartRecipeButton id={scheduleId}>
+                <span className='fa fa-play-circle'/> Start
+            </StartRecipeButton>
+        } else if (currentStep !== 0 && !isFinished) {
+            return <StartRecipeButton id={scheduleId}>
+                <span className='fa fa-play-circle'/> Continue
+            </StartRecipeButton>
+        }
+    };
+
     return (
         <div style={{
             display: 'flex',
@@ -47,14 +63,15 @@ const RecipeListItem = props => {
                 alignItems: 'center'
             }}>
                 <AddToCartButton/>
-                <StartRecipeButton/>
+                {<ResetButton/>}
+                {renderStartButtons()}
             </div>
         </div>
     );
 };
 
 RecipeListItem.propTypes = {
-    recipe: PropTypes.object.isRequired
+    scheduledRecipe: PropTypes.object.isRequired
 };
 
 RecipeListItem.defaultProps = {};
