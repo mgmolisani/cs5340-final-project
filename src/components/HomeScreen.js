@@ -3,7 +3,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import {css} from 'emotion';
 import Calendar from './Calendar';
 import RecipeList from './RecipeList';
-import {findScheduledRecipesForDate} from '../model/Data';
 import moment from 'moment';
 
 export default class HomeScreen
@@ -18,6 +17,7 @@ export default class HomeScreen
     }
 
     handleDaySelection(date) {
+        const {data} = this.props;
         const selectedRecipesByDate = [...this.state.selectedRecipesByDate];
         const match = selectedRecipesByDate.findIndex(selection => {
             return selection.date.isSame(date, 'day');
@@ -26,7 +26,7 @@ export default class HomeScreen
             selectedRecipesByDate.splice(match, 1);
             this.setState({selectedRecipesByDate});
         } else {
-            findScheduledRecipesForDate(date)
+            data.findScheduledRecipesForDate(date)
                 .then(scheduledRecipes => this.setState((state, props) => ({
                     selectedRecipesByDate: [
                         ...state.selectedRecipesByDate,
@@ -40,8 +40,9 @@ export default class HomeScreen
     }
 
     componentDidMount() {
+        const {data} = this.props;
         const today = moment();
-        findScheduledRecipesForDate(moment())
+        data.findScheduledRecipesForDate(moment())
             .then(scheduledRecipes => this.setState((state, props) => ({
                 selectedRecipesByDate: [{
                     date: today,
