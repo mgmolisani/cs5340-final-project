@@ -3,6 +3,7 @@ import CookingSideBar from "./CookingSideBar";
 import StepsContainer from "./StepsContainer";
 import {css} from 'emotion';
 import StepItemComponent from '../components/StepItemComponent';
+import DataService from '../model/Data';
 
 export default class CookingContainer extends React.Component {
     constructor(props) {
@@ -18,31 +19,31 @@ export default class CookingContainer extends React.Component {
     }
 
     finishRecipe() {
-        const {id, data} = this.props;
-        data.finishRecipe(id)
+        const {id} = this.props;
+        DataService.finishRecipe(id)
     }
 
     nextStep() {
         const {recipe, currentStep} = this.state;
-        const {id, data} = this.props;
+        const {id} = this.props;
         if (currentStep < recipe.steps.length) {
-            data.changeCurrentStep(id, currentStep + 1)
+            DataService.changeCurrentStep(id, currentStep + 1)
                 .then(currentStep => this.setState({currentStep}));
         }
     }
 
     prevStep() {
         const {currentStep} = this.state;
-        const {id, data} = this.props;
+        const {id} = this.props;
         if (currentStep > 1) {
-            data.changeCurrentStep(id, currentStep - 1)
+            DataService.changeCurrentStep(id, currentStep - 1)
                 .then(currentStep => this.setState({currentStep}));
         }
     }
 
     setToCurrentStep(stepNumber) {
-        const {id, data} = this.props;
-        data.changeCurrentStep(id, stepNumber)
+        const {id} = this.props;
+        DataService.changeCurrentStep(id, stepNumber)
             .then(currentStep => this.setState({currentStep}));
     }
 
@@ -62,12 +63,11 @@ export default class CookingContainer extends React.Component {
     }
 
     componentDidMount() {
-        const {data} = this.props;
-        data.findScheduledRecipeById(this.props.id)
+        DataService.findScheduledRecipeById(this.props.id)
             .then(scheduledRecipe => {
                 const {recipe, currentStep} = scheduledRecipe;
                 if (currentStep === 0) {
-                    data.changeCurrentStep(this.props.id, 1)
+                    DataService.changeCurrentStep(this.props.id, 1)
                         .then(currentStep => this.setState({
                             recipe,
                             currentStep

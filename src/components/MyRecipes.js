@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SearchBox from './SearchBox';
 import RecipeCardContainer from './RecipeCardContainer';
 import {css} from 'emotion';
+import DataService from '../model/Data';
 
 class MyRecipes extends Component {
     constructor(props) {
@@ -15,11 +16,8 @@ class MyRecipes extends Component {
     }
 
     componentDidMount() {
-        let recipes = this.props.data.recipes.map((recipe) => {
-            recipe.selected = false;
-            return recipe;
-        });
-        this.setState({recipes: recipes});
+        DataService.findAllRecipes()
+            .then(recipes => this.setState({recipes}));
     }
 
     renderButton() {

@@ -4,6 +4,7 @@ import {css} from 'emotion';
 import Calendar from './Calendar';
 import RecipeList from './RecipeList';
 import moment from 'moment';
+import DataService from '../model/Data'
 
 export default class HomeScreen
     extends Component {
@@ -17,7 +18,6 @@ export default class HomeScreen
     }
 
     handleDaySelection(date) {
-        const {data} = this.props;
         const selectedRecipesByDate = [...this.state.selectedRecipesByDate];
         const match = selectedRecipesByDate.findIndex(selection => {
             return selection.date.isSame(date, 'day');
@@ -26,7 +26,7 @@ export default class HomeScreen
             selectedRecipesByDate.splice(match, 1);
             this.setState({selectedRecipesByDate});
         } else {
-            data.findScheduledRecipesForDate(date)
+            DataService.findScheduledRecipesForDate(date)
                 .then(scheduledRecipes => this.setState((state, props) => ({
                     selectedRecipesByDate: [
                         ...state.selectedRecipesByDate,
@@ -40,9 +40,8 @@ export default class HomeScreen
     }
 
     componentDidMount() {
-        const {data} = this.props;
         const today = moment();
-        data.findScheduledRecipesForDate(moment())
+        DataService.findScheduledRecipesForDate(moment())
             .then(scheduledRecipes => this.setState((state, props) => ({
                 selectedRecipesByDate: [{
                     date: today,

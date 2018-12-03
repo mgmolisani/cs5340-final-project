@@ -7,12 +7,11 @@ import MyRecipes from './components/MyRecipes';
 import HomeScreen from './components/HomeScreen';
 import GroceryListDesktop from "./components/GroceryListDesktop";
 import CookingContainer from "./containers/CookingContainer";
-import Data from './model/Data';
 
 export default class App
     extends Component {
 
-    static data = new Data();
+    static data = {};
 
     render() {
         console.log(App.data);
@@ -32,16 +31,16 @@ export default class App
                 })}>
                     <Switch>
                         <Route path="/recipes">
-                            {() => <MyRecipes data={App.data}/>}
+                            {() => <MyRecipes/>}
                         </Route>
                         <Route path="/groceries">
-                            {() => <GroceryListDesktop data={App.data}/>}
+                            {() => <GroceryListDesktop/>}
                         </Route>
                         <Route path="/cooking/:id">
-                            {({match}) => <CookingContainer id={parseInt(match.params.id)} data={App.data}/>}
+                            {({match}) => <CookingContainer id={parseInt(match.params.id)}/>}
                         </Route>
                         <Route path="/">
-                            {() => <HomeScreen data={App.data}/>}
+                            {() => <HomeScreen/>}
                         </Route>
                     </Switch>
                 </div>

@@ -181,23 +181,21 @@ const plan4 = {
     date: moment('2018-12-21')
 };
 
+const recipes = [macNCheese, macNotCheese];
+
 const schedule = [plan1, plan2, plan3, plan4];
 
-export default class Data {
-    constructor() {
-        this.schedule = [...schedule];
-        this.recipes = [macNCheese, macNotCheese];
-    }
+const DataService = {
 
-    findAllRecipes = () => {
-        return Promise.resolve(this.recipes);
-    };
+    findAllRecipes: () => {
+        return Promise.resolve(recipes);
+    },
 
-    findRecipeById = id => {
-        return Promise.resolve(this.recipes.filter(recipe => recipe.id === id));
-    };
+    findRecipeById: id => {
+        return Promise.resolve(recipes.filter(recipe => recipe.id === id));
+    },
 
-    addRecipeToSchedule = (recipeId, dates) => {
+    addRecipeToSchedule: (recipeId, dates) => {
         const newScheduledRecipes = dates.map(date => ({
             id: Math.random(),
             recipe: recipeId,
@@ -205,25 +203,27 @@ export default class Data {
             isFinished: false,
             date
         }));
-        this.schedule = [...this.schedule, ...newScheduledRecipes];
+        newScheduledRecipes.map(scheduledRecipe => schedule.push(scheduledRecipe));
         return Promise.resolve(newScheduledRecipes);
-    };
+    },
 
-    findScheduledRecipesForDate = date => {
-        return Promise.resolve(this.schedule.filter(scheduleItem => scheduleItem.date.isSame(date, 'day')));
-    };
+    findScheduledRecipesForDate: date => {
+        return Promise.resolve(schedule.filter(scheduleItem => scheduleItem.date.isSame(date, 'day')));
+    },
 
-    findScheduledRecipeById = id => {
-        return Promise.resolve(this.schedule.find(scheduledRecipe => scheduledRecipe.id === id));
-    };
+    findScheduledRecipeById: id => {
+        return Promise.resolve(schedule.find(scheduledRecipe => scheduledRecipe.id === id));
+    },
 
-    changeCurrentStep = (id, currentStep) => {
-        return Promise.resolve(this.schedule.find(scheduledRecipe => scheduledRecipe.id === id).currentStep = currentStep);
-    };
+    changeCurrentStep: (id, currentStep) => {
+        return Promise.resolve(schedule.find(scheduledRecipe => scheduledRecipe.id === id).currentStep = currentStep);
+    },
 
-    finishRecipe = id => {
-        const scheduledRecipe = this.schedule.find(scheduledRecipe => scheduledRecipe.id === id);
+    finishRecipe: id => {
+        const scheduledRecipe = schedule.find(scheduledRecipe => scheduledRecipe.id === id);
         scheduledRecipe.currentStep = 0;
         scheduledRecipe.isFinished = true;
-    };
+    }
 };
+
+export default DataService;
