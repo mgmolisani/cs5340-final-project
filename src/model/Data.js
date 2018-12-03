@@ -135,7 +135,7 @@ const macNCheese = {
     icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/14/0/WU-0103_mac-and-cheese_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382541000580.jpeg',
     ingredients: [elbowMac, flour, cheddar, parm, butter],
     utensils: [pan, largeDish],
-    steps: [macStep1, macStep2, macStep3, macStep4]
+    steps: [macStep1, macStep2, macStep3, macStep4, macStep4, macStep4, macStep4, macStep4, macStep4]
 };
 
 const macNotCheese = {
@@ -149,36 +149,64 @@ const macNotCheese = {
 };
 
 const plan1 = {
-    recipes: [macNCheese],
+    id: 1,
+    recipe: macNCheese,
     currentStep: 0,
     isFinished: false,
     date: moment('2018-11-17')
 };
 
 const plan2 = {
-    recipes: [macNCheese, macNotCheese],
+    id: 2,
+    recipe: macNotCheese,
     currentStep: 0,
     isFinished: false,
-    date: moment('2018-11-18')
+    date: moment('2018-12-18')
 };
 
 const plan3 = {
-    recipes: [macNCheese, macNotCheese],
+    id: 3,
+    recipe: macNCheese,
     currentStep: 0,
     isFinished: false,
-    date: moment('2018-11-21')
+    date: moment('2018-12-21')
 };
 
 const plan4 = {
-    recipes: [macNotCheese],
+    id: 4,
+    recipe: macNotCheese,
     currentStep: 0,
     isFinished: false,
-    date: moment('2018-11-23')
+    date: moment('2018-12-21')
 };
 
 const schedule = [plan1, plan2, plan3, plan4];
 
 export const data = {
-    schedule: schedule,
+    schedule: [...schedule],
     recipes: [macNCheese, macNotCheese]
+};
+
+export const findAllRecipes = () => {
+    return Promise.resolve(data.recipes);
+};
+
+export const findRecipeById = id => {
+    return Promise.resolve(data.recipes.filter(recipe => recipe.id === id));
+};
+
+export const addRecipeToSchedule = (recipeId, dates) => {
+    const newScheduledRecipes = dates.map(date => ({
+        id: Math.random(),
+        recipe: recipeId,
+        currentStep: 0,
+        isFinished: false,
+        date
+    }));
+    data.schedule = [...data.schedule, ...newScheduledRecipes];
+    return Promise.resolve(newScheduledRecipes);
+};
+
+export const findScheduledRecipesForDate = date => {
+    return Promise.resolve(data.schedule.filter(scheduleItem => scheduleItem.date.isSame(date, 'day')));
 };
