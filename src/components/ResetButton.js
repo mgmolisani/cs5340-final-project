@@ -1,8 +1,10 @@
 import React from 'react';
 import {css} from 'emotion';
+
 import DataService from '../model/Data';
 
 const ResetButton = props => {
+
     return (
         <button className={css({
             color: 'black',
@@ -31,3 +33,4 @@ ResetButton.propTypes = {};
 ResetButton.defaultProps = {};
 
 export default ResetButton;
+

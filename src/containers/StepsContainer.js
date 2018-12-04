@@ -16,6 +16,7 @@ export default class StepsContainer extends React.Component {
 
     componentDidUpdate() {
         this.ref.focus({preventScroll: true})
+
     }
 
     render() {

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 
-const UOM = {
+export const UOM = {
     'TSP': {
         id: 1,
         displayName: 'teaspoon',
@@ -183,7 +183,9 @@ const plan4 = {
 
 const recipes = [macNCheese, macNotCheese];
 
-const groceryList = [];
+
+const groceries = [elbowMac, flour, cheddar, parm, butter];
+
 
 const schedule = [plan1, plan2, plan3, plan4];
 
@@ -195,6 +197,15 @@ const DataService = {
 
     findRecipeById: id => {
         return Promise.resolve(recipes.find(recipe => recipe.id === id));
+    },
+
+    findAllGroceries: () => {
+        return Promise.resolve(groceries);
+    },
+
+    addIngredientToGroceries: (ingredient) => {
+        groceries.splice(0, 0, ingredient);
+        return Promise.resolve(groceries);
     },
 
     addRecipeToSchedule: (recipeId, dates) => {
@@ -226,7 +237,6 @@ const DataService = {
         const scheduledRecipe = schedule.find(scheduledRecipe => scheduledRecipe.id === id);
         scheduledRecipe.currentStep = 0;
         scheduledRecipe.isFinished = true;
-
         return Promise.resolve(scheduledRecipe);
     },
 
@@ -237,10 +247,10 @@ const DataService = {
         return Promise.resolve(scheduledRecipe);
     },
 
-    addItemsToGrocerryList: recipeId => {
-        recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => groceryList.push(ing));
+    addRecipeGrocerryList: recipeId => {
+        recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => groceries.push(ing));
 
-        return Promise.resolve(groceryList);
+        return Promise.resolve(groceries);
     }
 };
 
