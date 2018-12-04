@@ -203,16 +203,17 @@ const DataService = {
         return Promise.resolve(groceries);
     },
 
-    addIngredientToGroceries: ingredient => {
-        let i = groceries.findIndex(item => {return(item.name === ingredient.name)});
+    addIngredientToGroceries: ing => {
+        let i = groceries.findIndex(item => {return(item.name === ing.name)});
         if(i >= 0) {
-            if(groceries[i].uom.id === ingredient.uom.id) {
-                groceries[i].quantity += ingredient.quantity;
+            if(groceries[i].uom.id === ing.uom.id) {
+                let qty = groceries[i].quantity;
+                groceries.splice(i, 1, {name: ing.name, quantity: qty + ing.quantity, uom: ing.uom});
             } else {
-                alert(ingredient.name + ' already exists on your grocery list with a different unit of measurement.')
+                alert(ing.name + ' already exists on your grocery list with a different unit of measurement.')
             }
         } else {
-            groceries.splice(0, 0, ingredient);
+            groceries.splice(0, 0, ing);
         }
         return Promise.resolve(groceries);
     },
@@ -266,7 +267,8 @@ const DataService = {
             let i = groceries.findIndex(item => {return(item.name === ing.name)});
             if(i >= 0) {
                 if(groceries[i].uom.id === ing.uom.id) {
-                    groceries[i].quantity += ing.quantity;
+                    let qty = groceries[i].quantity;
+                    groceries.splice(i, 1, {name: ing.name, quantity: qty + ing.quantity, uom: ing.uom});
                 } else {
                     alert(ing.name + ' already exists on your grocery list with a different unit of measurement.'
                     + ' Please change the unit of measurement on either the recipe or the grocery list.')
