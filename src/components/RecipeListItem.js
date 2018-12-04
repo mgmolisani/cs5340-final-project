@@ -10,6 +10,7 @@ export default class RecipeListItem extends React.Component {
     constructor(props) {
         super(props);
         this.switchModal = this.switchModal.bind(this);
+        this.accept = this.accept.bind(this);
         this.state = {
             displayModal: false
         };
@@ -39,6 +40,11 @@ export default class RecipeListItem extends React.Component {
 
     switchModal() {
         this.setState({displayModal: !this.state.displayModal})
+    }
+    accept() {
+       let h= DataService.addItemsToGrocerryList(this.props.scheduledRecipe.recipe.id);
+        console.log(h);
+        this.setState({displayModal: !this.state.displayModal});
     }
 
     render() {
@@ -87,7 +93,7 @@ export default class RecipeListItem extends React.Component {
                     <ResetButton id={this.props.scheduledRecipe.id}
                                  updateScheduledRecipe={this.props.updateScheduledRecipe}/>}
                     {this.renderStartButtons()}
-                    {this.state.displayModal ? <AddToCartModal name={this.props.scheduledRecipe.recipe.name}
+                    {this.state.displayModal ? <AddToCartModal accept={this.accept} name={this.props.scheduledRecipe.recipe.name}
                                                                     displayModal={this.switchModal}/> : null}
                 </div>
             </div>

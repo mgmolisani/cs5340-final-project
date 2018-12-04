@@ -45,7 +45,7 @@ export default class AddToCartModal
                             display: 'flex',
                             justifyContent: 'center'
                         })}>
-                            <YesNoButton confirm/>
+                            <YesNoButton accept={this.props.accept} confirm/>
                             <YesNoButton displayModal={this.props.displayModal}/>
                         </div>
                     </div>
