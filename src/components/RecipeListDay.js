@@ -18,7 +18,8 @@ const RecipeListDay = props => {
             {props.recipes.length > 0
                 ? props.recipes.map(scheduledRecipe => {
                     return <RecipeListItem key={scheduledRecipe.id}
-                                           scheduledRecipe={scheduledRecipe}/>;
+                                           scheduledRecipe={scheduledRecipe}
+                                           updateScheduledRecipe={props.updateScheduledRecipe}/>;
                 })
                 : <h4 className={css({
                     padding: '1em',

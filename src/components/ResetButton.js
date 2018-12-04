@@ -1,7 +1,8 @@
 import React from 'react';
 import {css} from 'emotion';
+import DataService from '../model/Data';
 
-const AddToCartButton = props => {
+const ResetButton = props => {
     return (
         <button className={css({
             color: 'black',
@@ -15,14 +16,18 @@ const AddToCartButton = props => {
             '&:hover': {
                 color: 'red'
             }
-        })}>
+        })}
+                onClick={() => {
+                    DataService.resetRecipe(props.id)
+                        .then(scheduledRecipe => {console.log(scheduledRecipe); props.updateScheduledRecipe(scheduledRecipe)});
+                }}>
             <span className='fa fa-refresh fa-2x'/>
         </button>
     );
 };
 
-AddToCartButton.propTypes = {};
+ResetButton.propTypes = {};
 
-AddToCartButton.defaultProps = {};
+ResetButton.defaultProps = {};
 
-export default AddToCartButton;
+export default ResetButton;

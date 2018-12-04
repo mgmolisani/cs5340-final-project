@@ -10,7 +10,8 @@ const RecipeList = props => {
                 {props.schedule.map(day => {
                     return <RecipeListDay key={day.date}
                                           date={day.date}
-                                          recipes={day.recipes}/>;
+                                          recipes={day.recipes}
+                                          updateScheduledRecipe={props.updateScheduledRecipe}/>;
                 })}
                 {/*<h3 className={css({
                     textAlign: 'center',

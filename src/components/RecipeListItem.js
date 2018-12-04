@@ -13,12 +13,13 @@ const RecipeListItem = props => {
         if (currentStep === 0 && !isFinished) {
             return <StartRecipeButton id={scheduleId}>
                 <span className='fa fa-play-circle'/> Start
-            </StartRecipeButton>
-        } else if (currentStep !== 0 && !isFinished) {
+            </StartRecipeButton>;
+        } else if (currentStep > 0 && !isFinished) {
             return <StartRecipeButton id={scheduleId}>
                 <span className='fa fa-play-circle'/> Continue
-            </StartRecipeButton>
+            </StartRecipeButton>;
         }
+        return null;
     };
 
     return (
@@ -63,7 +64,8 @@ const RecipeListItem = props => {
                 alignItems: 'center'
             }}>
                 <AddToCartButton/>
-                {<ResetButton/>}
+                {currentStep > 0 && !isFinished && <ResetButton id={scheduleId}
+                                                                updateScheduledRecipe={props.updateScheduledRecipe}/>}
                 {renderStartButtons()}
             </div>
         </div>

@@ -4,7 +4,7 @@ import {css} from 'emotion';
 import Calendar from './Calendar';
 import RecipeList from './RecipeList';
 import moment from 'moment';
-import DataService from '../model/Data'
+import DataService from '../model/Data';
 
 export default class HomeScreen
     extends Component {
@@ -14,6 +14,7 @@ export default class HomeScreen
         this.state = {
             selectedRecipesByDate: []
         };
+        this.updateScheduledRecipe = this.updateScheduledRecipe.bind(this);
         this.handleDaySelection = this.handleDaySelection.bind(this);
     }
 
@@ -26,28 +27,35 @@ export default class HomeScreen
             selectedRecipesByDate.splice(match, 1);
             this.setState({selectedRecipesByDate});
         } else {
-            DataService.findScheduledRecipesForDate(date)
-                .then(scheduledRecipes => this.setState((state, props) => ({
-                    selectedRecipesByDate: [
-                        ...state.selectedRecipesByDate,
-                        {
-                            date,
-                            recipes: scheduledRecipes
-                        }
-                    ]
-                })));
+            this.fetchScheduledRecipesForDate(date);
         }
     }
 
-    componentDidMount() {
-        const today = moment();
-        DataService.findScheduledRecipesForDate(moment())
+    fetchScheduledRecipesForDate(date) {
+        DataService.findScheduledRecipesForDate(date)
             .then(scheduledRecipes => this.setState((state, props) => ({
-                selectedRecipesByDate: [{
-                    date: today,
-                    recipes: scheduledRecipes
-                }]
+                selectedRecipesByDate: [
+                    ...state.selectedRecipesByDate,
+                    {
+                        date,
+                        recipes: scheduledRecipes
+                    }
+                ]
             })));
+    }
+
+    componentDidMount() {
+        this.fetchScheduledRecipesForDate(moment());
+    }
+
+    updateScheduledRecipe(scheduledRecipe) {
+        this.setState((state, props) => {
+            const newSelectedRecipesByDate = [...state.selectedRecipesByDate];
+            const selectedDate = newSelectedRecipesByDate.find(selectedDate => selectedDate.date.isSame(scheduledRecipe.date, 'day'));
+            const index = selectedDate.recipes.findIndex(recipe => recipe.id = scheduledRecipe.id);
+            selectedDate.recipes[index] = scheduledRecipe;
+            return {selectedRecipesByDate: newSelectedRecipesByDate};
+        });
     }
 
     render() {
@@ -58,7 +66,8 @@ export default class HomeScreen
             })}>
                 <Calendar selections={this.state.selectedRecipesByDate.map(selection => selection.date)}
                           handleDaySelection={this.handleDaySelection}/>
-                <RecipeList schedule={this.state.selectedRecipesByDate}/>
+                <RecipeList schedule={this.state.selectedRecipesByDate}
+                            updateScheduledRecipe={this.updateScheduledRecipe}/>
             </div>
         );
     }

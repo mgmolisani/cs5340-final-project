@@ -136,7 +136,7 @@ const macNCheese = {
     icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/14/0/WU-0103_mac-and-cheese_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382541000580.jpeg',
     ingredients: [elbowMac, flour, cheddar, parm, butter],
     utensils: [pan, largeDish],
-    steps: [macStep1, macStep2, macStep3, macStep4]
+    steps: [macStep1, macStep2, macStep3, macStep4, macStep4, macStep4]
 };
 
 const macNotCheese = {
@@ -223,7 +223,15 @@ const DataService = {
         const scheduledRecipe = schedule.find(scheduledRecipe => scheduledRecipe.id === id);
         scheduledRecipe.currentStep = 0;
         scheduledRecipe.isFinished = true;
-    }
+        return Promise.resolve(scheduledRecipe);
+    },
+
+    resetRecipe: id => {
+        const scheduledRecipe = schedule.find(scheduledRecipe => scheduledRecipe.id === id);
+        scheduledRecipe.currentStep = 0;
+        scheduledRecipe.isFinished = false;
+        return Promise.resolve(scheduledRecipe);
+    },
 };
 
 export default DataService;

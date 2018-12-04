@@ -18,11 +18,6 @@ export default class CookingContainer extends React.Component {
         this.setToCurrentStep = this.setToCurrentStep.bind(this);
     }
 
-    finishRecipe() {
-        const {id} = this.props;
-        DataService.finishRecipe(id)
-    }
-
     nextStep() {
         const {recipe, currentStep} = this.state;
         const {id} = this.props;
