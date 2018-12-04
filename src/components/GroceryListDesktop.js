@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {css} from 'emotion';
 import DataService from "../model/Data";
+import { UOM } from '../model/Data'
+
 
 export default class GroceryListDesktop
     extends Component {
@@ -9,19 +11,36 @@ export default class GroceryListDesktop
 
     static defaultProps = {};
 
+    static units = [];
+
+
+
     constructor(props) {
         super(props);
         this.state = {
             groceries: [],
-        }
+            newIngredient: {
+                name: '',
+                quantity: 0,
+                uom: ''
+            }
+        };
 
         this.selectIngredient = this.selectIngredient.bind(this);
+        this.deleteIngredient = this.deleteIngredient.bind(this);
+        this.ingredientNameHandler = this.ingredientNameHandler.bind(this);
+        this.ingredientQuantityHandler = this.ingredientQuantityHandler.bind(this);
+        this.ingredientUOMHandler = this.ingredientUOMHandler.bind(this);
+        this.submitIngredient = this.submitIngredient.bind(this);
+
+
     }
 
     componentDidMount() {
         DataService.findAllGroceries()
             .then(groceries => this.setState({groceries}));
     }
+
 
     selectIngredient(name) {
         for (let i = 0; i < this.state.groceries.length; i++) {
@@ -33,12 +52,56 @@ export default class GroceryListDesktop
         }
     }
 
+    deleteIngredient(name) {
+        DataService.deleteIngredientFromGroceryList(name)
+            .then(groceries => this.setState({groceries}));
+    }
+
+    ingredientNameHandler(event) {
+        console.log(event.target.value)
+        this.setState({
+            newIngredient: {
+                name: event.target.value,
+                quantity: this.state.newIngredient.quantity,
+                uom: this.state.newIngredient.uom,
+            }
+        })
+    }
+
+    ingredientQuantityHandler(event) {
+        this.setState({
+            newIngredient: {
+                name: this.state.newIngredient.name,
+                quantity: event.target.value,
+                uom: this.state.newIngredient.uom,
+            }
+        })
+    }
+
+    ingredientUOMHandler(event) {
+        console.log({...event.target.value})
+        this.setState({
+            newIngredient: {
+                name: this.state.newIngredient.name,
+                quantity: this.state.newIngredient.quantity,
+                uom: GroceryListDesktop.units[event.target.value]
+            }
+        })
+    }
+
+    submitIngredient() {
+        const ingredient = this.state.newIngredient;
+        DataService.addIngredientToGroceries(ingredient)
+            .then(groceries => this.setState({groceries}));
+    }
+
     render() {
+
         return (
             <div className={css({
                 flex: '1 1 auto',
                 width: '100%',
-                minHeight: '100%',
+                height: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -55,7 +118,7 @@ export default class GroceryListDesktop
                     boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)'
                 })}>
                     <div className={css({
-                        flex: '1 1 auto',
+                        flex: '0 0 auto',
                         backgroundColor: 'darkred',
                         color: 'white'
                     })}>
@@ -102,7 +165,8 @@ export default class GroceryListDesktop
                         </div>
                     </div>
                     <div className={css({
-                        flex: '1 1 auto'
+                        flex: '1 1 auto',
+                        overflow: 'auto'
                     })}>
                         {this.state.groceries.map(ingredient => {
                             return (
@@ -159,7 +223,8 @@ export default class GroceryListDesktop
                                         width: '5%',
                                         margin: '0 0.5em'
                                     })}>
-                                        <i className='fa fa-remove'/>
+                                        <i className='fa fa-remove'
+                                           onClick={() => this.deleteIngredient(ingredient.name)}/>
                                     </div>
                                 </div>
                             );
@@ -187,7 +252,8 @@ export default class GroceryListDesktop
                                        height: '100%',
                                        padding: 5,
                                        backgroundColor: 'rgba(0,0,0,0)'
-                                   })}/>
+                                   })}
+                                    onChange={this.ingredientNameHandler}/>
                             <input type={'number'}
                                    defaultValue={'0'}
                                    className={css({
@@ -198,7 +264,8 @@ export default class GroceryListDesktop
                                        height: '100%',
                                        padding: 5,
                                        backgroundColor: 'rgba(0,0,0,0)'
-                                   })}/>
+                                   })}
+                                   onChange={this.ingredientQuantityHandler}/>
                             <select defaultValue={'cup'}
                                     className={css({
                                         width: '20%',
@@ -207,13 +274,16 @@ export default class GroceryListDesktop
                                         height: '100%',
                                         padding: 5,
                                         backgroundColor: 'rgba(0,0,0,0)'
-                                    })}>
-                                <option>
-                                    cup
-                                </option>
-                                <option>
-                                    tbsp
-                                </option>
+                                    })}
+                                    onChange={this.ingredientUOMHandler}>
+
+                                {GroceryListDesktop.units.map((uom, index) => {
+                                    return(
+                                        <option value={index}>
+                                            {uom.shortName}
+                                        </option>
+                                    )
+                                })}
                             </select>
                         </div>
                         <button className={css({
@@ -225,7 +295,8 @@ export default class GroceryListDesktop
                             border: 0,
                             borderRadius: '5px',
                             height: '100%'
-                        })}>
+                        })}
+                        onClick={this.submitIngredient}>
                             <i className='fa fa-plus'/>
                         </button>
                     </div>
@@ -234,3 +305,10 @@ export default class GroceryListDesktop
         );
     }
 }
+
+
+(() => {
+    for (let unit in UOM) {
+        GroceryListDesktop.units.push(UOM[unit])
+    }
+})();

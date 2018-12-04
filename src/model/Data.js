@@ -1,7 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 
-const UOM = {
+export const UOM = {
     'TSP': {
         id: 1,
         displayName: 'teaspoon',
@@ -195,6 +195,11 @@ const DataService = {
 
     findAllGroceries: () => {
         return Promise.resolve(groceries);
+    },
+
+    addIngredientToGroceries: (ingredient) => {
+       groceries.push(ingredient);
+       return Promise.resolve(groceries);
     },
 
     findRecipeById: id => {
