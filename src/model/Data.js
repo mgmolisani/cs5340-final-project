@@ -204,7 +204,16 @@ const DataService = {
     },
 
     addIngredientToGroceries: ingredient => {
-        groceries.splice(0, 0, ingredient);
+        let i = groceries.findIndex(item => {return(item.name === ingredient.name)});
+        if(i >= 0) {
+            if(groceries[i].uom.id === ingredient.uom.id) {
+                groceries[i].quantity += ingredient.quantity;
+            } else {
+                alert(ingredient.name + ' already exists on your grocery list with a different unit of measurement.')
+            }
+        } else {
+            groceries.splice(0, 0, ingredient);
+        }
         return Promise.resolve(groceries);
     },
 
@@ -253,7 +262,19 @@ const DataService = {
     },
 
     addRecipeToGroceryList: recipeId => {
-        recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => groceries.push(ing));
+        recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => {
+            let i = groceries.findIndex(item => {return(item.name === ing.name)});
+            if(i >= 0) {
+                if(groceries[i].uom.id === ing.uom.id) {
+                    groceries[i].quantity += ing.quantity;
+                } else {
+                    alert(ing.name + ' already exists on your grocery list with a different unit of measurement.'
+                    + ' Please change the unit of measurement on either the recipe or the grocery list.')
+                }
+            } else {
+                groceries.push(ing)
+            }
+        });
 
         return Promise.resolve(groceries);
     }

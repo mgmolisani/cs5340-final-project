@@ -22,7 +22,7 @@ export default class GroceryListDesktop
             newIngredient: {
                 name: '',
                 quantity: 0,
-                uom: GroceryListDesktop.units[1]
+                uom: GroceryListDesktop.units[0]
             }
         };
 
@@ -72,7 +72,7 @@ export default class GroceryListDesktop
         this.setState({
             newIngredient: {
                 name: this.state.newIngredient.name,
-                quantity: event.target.value,
+                quantity: parseInt(event.target.value),
                 uom: this.state.newIngredient.uom,
             }
         })
