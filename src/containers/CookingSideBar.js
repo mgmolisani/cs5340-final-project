@@ -1,7 +1,9 @@
 import React from 'react';
 import IngredientsComponent from "../components/IngredientsComponent";
 import {css} from 'emotion';
+
 import Link from 'react-router-dom/es/Link';
+
 
 export default class CookingSideBar extends React.Component {
     constructor(props) {
@@ -46,6 +48,7 @@ export default class CookingSideBar extends React.Component {
                 <div className={css({
                     flex: '0 0 auto'
                 })}>
+
                     <Link to={'/'}>
                         <button className={css({
                             color: 'white',
@@ -62,6 +65,7 @@ export default class CookingSideBar extends React.Component {
                             Back
                         </button>
                     </Link>
+
                 </div>
             </div>
 

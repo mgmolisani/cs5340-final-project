@@ -4,13 +4,21 @@ import StartRecipeButton from './StartRecipeButton';
 import AddToCartButton from './AddToCartButton';
 import ResetButton from './ResetButton';
 import DataService from '../model/Data';
+import AddToCartModal from "./AddToCartModal";
 
-const RecipeListItem = props => {
-    const scheduleId = props.scheduledRecipe.id;
-    const {recipe, currentStep, isFinished} = props.scheduledRecipe;
-    const {name, description, icon} = recipe;
+export default class RecipeListItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.switchModal = this.switchModal.bind(this);
+        this.state = {
+            displayModal: false
+        };
+    }
 
-    const renderStartButtons = () => {
+    renderStartButtons() {
+        const {scheduledRecipe} = this.props;
+        const scheduleId = scheduledRecipe.id;
+        const {recipe, currentStep, isFinished} = scheduledRecipe;
         if (!isFinished) {
             if (currentStep === 0) {
                 return <StartRecipeButton id={scheduleId}>
@@ -27,62 +35,72 @@ const RecipeListItem = props => {
                 <span className='fa fa-play-circle'/> Restart
             </StartRecipeButton>;
         }
-    };
+    }
 
-    return (
-        <div style={{
-            display: 'flex',
-            margin: '0.5em 0',
-            padding: '0.75em',
-            borderRadius: '0.5em',
-            backgroundColor: 'white',
-            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)'
-        }}>
-            <img src={icon}
-                 alt={name}
-                 style={{
-                     height: '4em',
-                     width: '4em',
-                     flex: '0 0 auto',
-                     borderRadius: '0.5em',
-                     objectFit: 'cover'
-                 }}/>
-            <div style={{
-                flex: '0 0 auto',
-                padding: '0 0.5em'
-            }}>
-                <h4 style={{
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    margin: 0
-                }}>
-                    {name}
-                </h4>
-                <p style={{
-                    margin: 0
-                }}>
-                    {description}
-                </p>
-            </div>
-            <div style={{
+    switchModal() {
+        this.setState({displayModal: !this.state.displayModal})
+    }
+
+    render() {
+        return (<div style={{
                 display: 'flex',
-                flex: '1 1 0',
-                justifyContent: 'flex-end',
-                alignItems: 'center'
+                margin: '0.5em 0',
+                padding: '0.75em',
+                borderRadius: '0.5em',
+                backgroundColor: 'white',
+                boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)'
             }}>
-                <AddToCartButton/>
-                {currentStep > 0 && !isFinished && <ResetButton id={scheduleId}
-                                                                updateScheduledRecipe={props.updateScheduledRecipe}/>}
-                {renderStartButtons()}
+                <img src={this.props.scheduledRecipe.recipe.icon}
+                     alt={this.props.scheduledRecipe.recipe.name}
+                     style={{
+                         height: '4em',
+                         width: '4em',
+                         flex: '0 0 auto',
+                         borderRadius: '0.5em',
+                         objectFit: 'cover'
+                     }}/>
+                <div style={{
+                    flex: '0 0 auto',
+                    padding: '0 0.5em'
+                }}>
+                    <h4 style={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        margin: 0
+                    }}>
+                        {this.props.scheduledRecipe.recipe.name}
+                    </h4>
+                    <p style={{
+                        margin: 0
+                    }}>
+                        {this.props.scheduledRecipe.recipe.description}
+                    </p>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    flex: '1 1 0',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center'
+                }}>
+                    <AddToCartButton displayModal={this.switchModal}/>
+                    {this.props.scheduledRecipe.currentStep > 0 && !this.props.scheduledRecipe.isFinished &&
+                    <ResetButton id={this.props.scheduledRecipe.id}
+                                 updateScheduledRecipe={this.props.updateScheduledRecipe}/>}
+                    {this.renderStartButtons()}
+                    {this.state.displayModal ? <AddToCartModal name={this.props.scheduledRecipe.recipe.name}
+                                                                    displayModal={this.switchModal}/> : null}
+                </div>
             </div>
-        </div>
-    );
-};
+        )
+    }
+}
 
-RecipeListItem.propTypes = {
-    scheduledRecipe: PropTypes.object.isRequired
-};
-
-RecipeListItem.defaultProps = {};
-
-export default RecipeListItem;
+// RecipeListItem.propTypes = {
+//     scheduledRecipe: PropTypes.object.isRequired
+// };
+//
+// RecipeListItem.defaultProps = {};
+//
+// export
+// default
+// RecipeListItem;

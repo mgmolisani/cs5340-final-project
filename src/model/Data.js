@@ -183,6 +183,8 @@ const plan4 = {
 
 const recipes = [macNCheese, macNotCheese];
 
+const groceryList =[];
+
 const schedule = [plan1, plan2, plan3, plan4];
 
 const DataService = {
@@ -224,6 +226,7 @@ const DataService = {
         const scheduledRecipe = schedule.find(scheduledRecipe => scheduledRecipe.id === id);
         scheduledRecipe.currentStep = 0;
         scheduledRecipe.isFinished = true;
+
         return Promise.resolve(scheduledRecipe);
     },
 
@@ -233,6 +236,11 @@ const DataService = {
         scheduledRecipe.isFinished = false;
         return Promise.resolve(scheduledRecipe);
     },
+
+    addItemsToGrocerryList: recipeId =>{
+        groceryList.push(recipes.find(recipe => recipe.id === recipeId).ingredients);
+        return Promise.resolve(groceryList);
+    }
 };
 
 export default DataService;

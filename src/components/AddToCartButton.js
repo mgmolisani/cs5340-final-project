@@ -1,9 +1,10 @@
 import React from 'react';
 import {css} from 'emotion';
+import AddToCartModal from "./AddToCartModal";
 
 const AddToCartButton = props => {
     return (
-        <button className={css({
+        <button onClick={()=> props.displayModal()} className={css({
             color: 'black',
             backgroundColor: 'inherit',
             cursor: 'pointer',
@@ -16,11 +17,10 @@ const AddToCartButton = props => {
                 color: 'red'
             }
         })}>
-            <span className='fa fa-cart-plus fa-2x'/>
+            <span  className='fa fa-cart-plus fa-2x'/>
         </button>
     );
 };
-
 AddToCartButton.propTypes = {};
 
 AddToCartButton.defaultProps = {};

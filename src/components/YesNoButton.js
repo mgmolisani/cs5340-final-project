@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const YesNoButton = props => {
     return (
-        <button style={{
+        <button onClick={props.confirm? null :() =>props.displayModal()} style={{
             color: props.confirm ? 'white' : 'red',
             backgroundColor: props.confirm ? 'red' : 'inherit',
             cursor: 'pointer',
