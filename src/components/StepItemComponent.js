@@ -106,9 +106,8 @@ export default class StepItemComponent
                     display: 'flex',
                     justifyContent: 'flex-end',
                     alignItems: 'center'
-                }}
-                    {this.renderControlButton()}>
-
+                }}>
+                    {this.renderControlButton()}
                 </div>
             </div>
         </div>;

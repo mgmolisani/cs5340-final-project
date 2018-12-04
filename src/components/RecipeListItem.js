@@ -42,7 +42,7 @@ export default class RecipeListItem extends React.Component {
         this.setState({displayModal: !this.state.displayModal})
     }
     accept() {
-       let h= DataService.addRecipeGrocerryList(this.props.scheduledRecipe.recipe.id);
+       let h= DataService.addRecipeToGroceryList(this.props.scheduledRecipe.recipe.id);
         console.log(h);
         this.setState({displayModal: !this.state.displayModal});
     }

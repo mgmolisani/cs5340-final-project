@@ -184,7 +184,7 @@ const plan4 = {
 const recipes = [macNCheese, macNotCheese];
 
 
-const groceries = [elbowMac, flour, cheddar, parm, butter];
+const groceries = [];
 
 
 const schedule = [plan1, plan2, plan3, plan4];
@@ -203,9 +203,14 @@ const DataService = {
         return Promise.resolve(groceries);
     },
 
-    addIngredientToGroceries: (ingredient) => {
+    addIngredientToGroceries: ingredient => {
         groceries.splice(0, 0, ingredient);
         return Promise.resolve(groceries);
+    },
+
+    deleteIngredientFromGroceries: name => {
+        groceries.splice(groceries.findIndex(item => {return(item.name === name)}), 1)
+        return Promise.resolve(groceries)
     },
 
     addRecipeToSchedule: (recipeId, dates) => {
@@ -247,7 +252,7 @@ const DataService = {
         return Promise.resolve(scheduledRecipe);
     },
 
-    addRecipeGrocerryList: recipeId => {
+    addRecipeToGroceryList: recipeId => {
         recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => groceries.push(ing));
 
         return Promise.resolve(groceries);

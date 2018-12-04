@@ -53,7 +53,8 @@ export default class GroceryListDesktop
     }
 
     deleteIngredient(name) {
-        DataService.deleteIngredientFromGroceryList(name)
+        console.log('test');
+        DataService.deleteIngredientFromGroceries(name)
             .then(groceries => this.setState({groceries}));
     }
 
@@ -88,6 +89,9 @@ export default class GroceryListDesktop
     }
 
     submitIngredient() {
+        if(this.state.newIngredient.name === '') {
+            alert('Please enter a name for the item you wish to add');
+        }
         const ingredient = this.state.newIngredient;
         DataService.addIngredientToGroceries(ingredient)
             .then(groceries => this.setState({groceries}));
