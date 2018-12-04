@@ -91,10 +91,11 @@ export default class GroceryListDesktop
     submitIngredient() {
         if(this.state.newIngredient.name === '') {
             alert('Please enter a name for the item you wish to add');
+        } else {
+            const ingredient = this.state.newIngredient;
+            DataService.addIngredientToGroceries(ingredient)
+                .then(groceries => this.setState({groceries}));
         }
-        const ingredient = this.state.newIngredient;
-        DataService.addIngredientToGroceries(ingredient)
-            .then(groceries => this.setState({groceries}));
     }
 
     render() {
