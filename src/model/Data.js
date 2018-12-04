@@ -183,7 +183,7 @@ const plan4 = {
 
 const recipes = [macNCheese, macNotCheese];
 
-const groceryList =[];
+const groceryList = [];
 
 const schedule = [plan1, plan2, plan3, plan4];
 
@@ -237,8 +237,9 @@ const DataService = {
         return Promise.resolve(scheduledRecipe);
     },
 
-    addItemsToGrocerryList: recipeId =>{
-        groceryList.push(recipes.find(recipe => recipe.id === recipeId).ingredients);
+    addItemsToGrocerryList: recipeId => {
+        recipes.find(recipe => recipe.id === recipeId).ingredients.map(ing => groceryList.push(ing));
+
         return Promise.resolve(groceryList);
     }
 };
