@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import StartRecipeButton from './StartRecipeButton';
 import AddToCartButton from './AddToCartButton';
 import ResetButton from './ResetButton';
+import DataService from '../model/Data';
 
 const RecipeListItem = props => {
     const scheduleId = props.scheduledRecipe.id;
@@ -10,16 +11,22 @@ const RecipeListItem = props => {
     const {name, description, icon} = recipe;
 
     const renderStartButtons = () => {
-        if (currentStep === 0 && !isFinished) {
-            return <StartRecipeButton id={scheduleId}>
-                <span className='fa fa-play-circle'/> Start
-            </StartRecipeButton>;
-        } else if (currentStep > 0 && !isFinished) {
-            return <StartRecipeButton id={scheduleId}>
-                <span className='fa fa-play-circle'/> Continue
+        if (!isFinished) {
+            if (currentStep === 0) {
+                return <StartRecipeButton id={scheduleId}>
+                    <span className='fa fa-play-circle'/> Start
+                </StartRecipeButton>;
+            } else if (currentStep > 0) {
+                return <StartRecipeButton id={scheduleId}>
+                    <span className='fa fa-play-circle'/> Continue
+                </StartRecipeButton>;
+            }
+        } else {
+            return <StartRecipeButton id={scheduleId}
+                                      onClick={() => DataService.resetRecipe(scheduleId)}>
+                <span className='fa fa-play-circle'/> Restart
             </StartRecipeButton>;
         }
-        return null;
     };
 
     return (

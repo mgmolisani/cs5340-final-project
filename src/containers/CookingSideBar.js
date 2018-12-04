@@ -1,6 +1,7 @@
 import React from 'react';
 import IngredientsComponent from "../components/IngredientsComponent";
 import {css} from 'emotion';
+import Link from 'react-router-dom/es/Link';
 
 export default class CookingSideBar extends React.Component {
     constructor(props) {
@@ -45,20 +46,22 @@ export default class CookingSideBar extends React.Component {
                 <div className={css({
                     flex: '0 0 auto'
                 })}>
-                    <button className={css({
-                        color: 'white',
-                        backgroundColor: 'red',
-                        cursor: 'pointer',
-                        border: 0,
-                        borderRadius: '0.3em',
-                        whiteSpace: 'nowrap',
-                        padding: '0.5em',
-                        margin: '0.75em',
-                        fontSize: '2em'
-                    })}>
-                        <i className="fa fa-chevron-left" style={{marginRight: 5}}/>
-                        Back
-                    </button>
+                    <Link to={'/'}>
+                        <button className={css({
+                            color: 'white',
+                            backgroundColor: 'red',
+                            cursor: 'pointer',
+                            border: 0,
+                            borderRadius: '0.3em',
+                            whiteSpace: 'nowrap',
+                            padding: '0.5em',
+                            margin: '0.75em',
+                            fontSize: '2em'
+                        })}>
+                            <i className="fa fa-chevron-left" style={{marginRight: 5}}/>
+                            Back
+                        </button>
+                    </Link>
                 </div>
             </div>
 

@@ -89,12 +89,13 @@ export default class CookingContainer extends React.Component {
                         <StepsContainer recipe={this.state.recipe}
                                         handleKeyDown={this.handleKeyDown}>
                             {this.state.recipe.steps.map((step, index) => {
+                                const isLast = this.state.recipe.steps.length === step.order;
                                 return <StepItemComponent key={index}
                                                           step={step}
                                                           complete={step.order < this.state.currentStep}
                                                           selected={step.order === this.state.currentStep}
-                                                          isLast={this.state.recipe.steps.length === step.order}
-                                                          nextStep={this.nextStep}
+                                                          nextStep={!isLast ? this.nextStep : () => DataService.finishRecipe(this.props.id)}
+                                                          isLast={isLast}
                                                           setToCurrentStep={() => this.setToCurrentStep(step.order)}
                                 />;
                             })}

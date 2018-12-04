@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {css} from 'emotion';
+import Link from 'react-router-dom/es/Link';
 
 export default class StepItemComponent
     extends Component {
@@ -106,30 +107,32 @@ export default class StepItemComponent
                     justifyContent: 'flex-end',
                     alignItems: 'center'
                 }}>
-                    <button className={css({
-                        color: 'white',
-                        backgroundColor: 'red',
-                        cursor: 'pointer',
-                        border: 0,
-                        borderRadius: '0.5em',
-                        whiteSpace: 'nowrap',
-                        padding: '0.5em',
-                        marginTop: '0.75em',
-                        fontSize: '0.65em'
-                    })}
-                            onClick={
-                                !this.props.isLast
-                                    ? event => {
-                                        event.preventDefault();
-                                        event.target.blur();
-                                        this.props.nextStep();
-                                    }
-                                    : null}>
-                        {this.props.isLast ? 'Finish' : 'Next'}
-                    </button>
+                    {this.renderControlButton()}
                 </div>
             </div>
         </div>;
+    }
+
+    renderControlButton() {
+        const button = <button className={css({
+            color: 'white',
+            backgroundColor: 'red',
+            cursor: 'pointer',
+            border: 0,
+            borderRadius: '0.5em',
+            whiteSpace: 'nowrap',
+            padding: '0.5em',
+            marginTop: '0.75em',
+            fontSize: '0.65em'
+        })}
+                               onClick={this.props.nextStep}>
+            {this.props.isLast ? 'Finish' : 'Next'}
+        </button>;
+        return this.props.isLast
+            ? <Link to={'/'}>
+                {button}
+            </Link>
+            : button;
     }
 
     render() {
