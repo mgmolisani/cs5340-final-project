@@ -22,7 +22,7 @@ export default class GroceryListDesktop
             newIngredient: {
                 name: '',
                 quantity: 0,
-                uom: ''
+                uom: GroceryListDesktop.units[1]
             }
         };
 
@@ -58,7 +58,6 @@ export default class GroceryListDesktop
     }
 
     ingredientNameHandler(event) {
-        console.log(event.target.value)
         this.setState({
             newIngredient: {
                 name: event.target.value,
@@ -79,7 +78,6 @@ export default class GroceryListDesktop
     }
 
     ingredientUOMHandler(event) {
-        console.log({...event.target.value})
         this.setState({
             newIngredient: {
                 name: this.state.newIngredient.name,
@@ -237,7 +235,8 @@ export default class GroceryListDesktop
                         alignItems: 'center',
                         fontSize: '1.5em',
                         padding: '0.5em',
-                        height: '3em'
+                        height: '3em',
+                        borderTop: '1px solid grey'
                     })}>
                         <div className={css({
                             flex: '1 1 auto',
@@ -255,6 +254,7 @@ export default class GroceryListDesktop
                                    })}
                                     onChange={this.ingredientNameHandler}/>
                             <input type={'number'}
+                                   min={'0'}
                                    defaultValue={'0'}
                                    className={css({
                                        width: '10%',

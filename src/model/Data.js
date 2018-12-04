@@ -198,7 +198,7 @@ const DataService = {
     },
 
     addIngredientToGroceries: (ingredient) => {
-       groceries.push(ingredient);
+       groceries.splice(0, 0, ingredient);
        return Promise.resolve(groceries);
     },
 
