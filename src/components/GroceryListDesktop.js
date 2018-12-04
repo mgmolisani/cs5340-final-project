@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {css} from 'emotion';
+import DataService from "../model/Data";
 
 export default class GroceryListDesktop
     extends Component {
@@ -10,6 +11,26 @@ export default class GroceryListDesktop
 
     constructor(props) {
         super(props);
+        this.state = {
+            groceries: [],
+        }
+
+        this.selectIngredient = this.selectIngredient.bind(this);
+    }
+
+    componentDidMount() {
+        DataService.findAllGroceries()
+            .then(groceries => this.setState({groceries}));
+    }
+
+    selectIngredient(name) {
+        for (let i = 0; i < this.state.groceries.length; i++) {
+            if (this.state.groceries[i].name === name) {
+                const groceries = [...this.state.groceries];
+                groceries[i].selected = !groceries[i].selected;
+                this.setState({groceries});
+            }
+        }
     }
 
     render() {
@@ -83,7 +104,7 @@ export default class GroceryListDesktop
                     <div className={css({
                         flex: '1 1 auto'
                     })}>
-                        {this.prop.data.recipes[0].ingredients.map(ingredient => {
+                        {this.state.groceries.map(ingredient => {
                             return (
                                 <div className={css({
                                     display: 'flex',
@@ -91,13 +112,18 @@ export default class GroceryListDesktop
                                     fontSize: '1.5em',
                                     padding: '1em',
                                     width: '100%',
-                                    borderBottom: '2px solid grey'
-                                })}>
+                                    borderBottom: '2px solid grey',
+                                    backgroundColor: ingredient.selected ? 'lightgray' : 'white'
+                                })}
+                                     onClick={() => this.selectIngredient(ingredient.name)}>
                                     <div className={css({
                                         width: '10%',
-                                        textAlign: 'center'
+                                        textAlign: 'center',
+                                        color: ingredient.selected ? 'green' : 'black'
                                     })}>
-                                        <span className='fa fa-circle-o'/>
+                                        {ingredient.selected ?
+                                            <span className='fa fa-check'/> :
+                                            <span className='fa fa-circle-o'/>}
                                     </div>
                                     <div className={css({
                                         flex: '1 1 auto',

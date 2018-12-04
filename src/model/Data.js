@@ -183,12 +183,18 @@ const plan4 = {
 
 const recipes = [macNCheese, macNotCheese];
 
+const groceries = [elbowMac, flour, cheddar, parm, butter];
+
 const schedule = [plan1, plan2, plan3, plan4];
 
 const DataService = {
 
     findAllRecipes: () => {
         return Promise.resolve(recipes);
+    },
+
+    findAllGroceries: () => {
+        return Promise.resolve(groceries);
     },
 
     findRecipeById: id => {
