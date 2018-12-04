@@ -11,10 +11,7 @@ import CookingContainer from "./containers/CookingContainer";
 export default class App
     extends Component {
 
-    static data = {};
-
     render() {
-        console.log(App.data);
         return (
             <div className={css({
                 display: 'flex',

@@ -11,9 +11,10 @@ class MyRecipes extends Component {
             recipes: [],
             search: ''
         };
-
         this.selectRecipe = this.selectRecipe.bind(this);
     }
+
+
 
     componentDidMount() {
         DataService.findAllRecipes()

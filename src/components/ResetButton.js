@@ -19,7 +19,7 @@ const ResetButton = props => {
         })}
                 onClick={() => {
                     DataService.resetRecipe(props.id)
-                        .then(scheduledRecipe => {console.log(scheduledRecipe); props.updateScheduledRecipe(scheduledRecipe)});
+                        .then(scheduledRecipe => props.updateScheduledRecipe(scheduledRecipe));
                 }}>
             <span className='fa fa-refresh fa-2x'/>
         </button>

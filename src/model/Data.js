@@ -192,13 +192,14 @@ const DataService = {
     },
 
     findRecipeById: id => {
-        return Promise.resolve(recipes.filter(recipe => recipe.id === id));
+        return Promise.resolve(recipes.find(recipe => recipe.id === id));
     },
 
     addRecipeToSchedule: (recipeId, dates) => {
+        const recipe = recipes.find(recipe => recipe.id === recipeId);
         const newScheduledRecipes = dates.map(date => ({
-            id: Math.random(),
-            recipe: recipeId,
+            id: Math.floor(Math.random() * Math.floor(1000000000)),
+            recipe: recipe,
             currentStep: 0,
             isFinished: false,
             date

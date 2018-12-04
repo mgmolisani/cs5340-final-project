@@ -52,7 +52,7 @@ export default class HomeScreen
         this.setState((state, props) => {
             const newSelectedRecipesByDate = [...state.selectedRecipesByDate];
             const selectedDate = newSelectedRecipesByDate.find(selectedDate => selectedDate.date.isSame(scheduledRecipe.date, 'day'));
-            const index = selectedDate.recipes.findIndex(recipe => recipe.id = scheduledRecipe.id);
+            const index = selectedDate.recipes.findIndex(recipe => recipe.id === scheduledRecipe.id);
             selectedDate.recipes[index] = scheduledRecipe;
             return {selectedRecipesByDate: newSelectedRecipesByDate};
         });
