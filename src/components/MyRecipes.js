@@ -83,7 +83,7 @@ class MyRecipes extends Component {
 
     render() {
         const filteredRecipes = this.state.recipes.filter(recipe => {
-            return recipe.name.toLowerCase().includes(this.state.search);
+            return recipe.name.toUpperCase().includes(this.state.search.toUpperCase());
         });
 
         return (
