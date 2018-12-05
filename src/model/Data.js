@@ -106,6 +106,32 @@ const largeDish = {
     quantity: 1
 };
 
+const t1 = {
+    name: 'Whole Turkey',
+    quantity: 1,
+    uom: UOM.EACH
+};
+
+const t2 = {
+    name: 'Celery',
+    quantity: 4,
+    uom: UOM.EACH
+};
+
+const t3 = {
+    name: 'Kosher Salt',
+    quantity: 2,
+    uom: UOM.CUP
+};
+
+const t4 = {
+    name: 'White Onion',
+    quantity: 2,
+    uom: UOM.EACH
+};
+
+
+
 const macStep5 = {
     info: 'Melt butter or margarine in a skillet over medium heat. Add breadcrumbs and brown. Spread over the macaroni and cheese to cover.',
     order: 5
@@ -125,9 +151,41 @@ const macStep2 = {
 };
 
 const macStep1 = {
-    info: 'Cook macaroni according to the package directions. Drain.',
+    info: 'Boil macaroni. Drain.',
     order: 1
 };
+
+
+const tur1 = {
+    info: 'Rub the turkey inside and out with the kosher salt.',
+    order: 1
+};
+
+const tur2 = {
+    info: 'Place the bird in a large stock pot, and cover with cold water. Place in the refrigerator, and allow the turkey to soak in the salt and water mixture 12 hours, or overnight',
+    order: 2
+};
+
+const tur3 = {
+    info: 'Preheat oven to 350 degrees F (175 degrees C). Thoroughly rinse the turkey, and discard the brine mixture.',
+    order: 3
+};
+
+const tur4 = {
+    info: 'Brush the turkey with 1/2 the melted butter. Place breast side down on a roasting rack in a shallow roasting pan.',
+    order: 4
+};
+
+const tur5 = {
+    info: 'Brush the turkey with 1/2 the melted butter. Place breast side down on a roasting rack in a shallow roasting pan. ',
+    order: 5
+};
+
+const tur6 = {
+    info: ' Stuff the turkey cavity with 1 onion, 1/2 the carrots, 1/2 the celery, 1 sprig of thyme, and the bay leaf.',
+    order: 6
+};
+
 
 const macNCheese = {
     id: 1,
@@ -141,12 +199,12 @@ const macNCheese = {
 
 const macNotCheese = {
     id: 2,
-    name: 'Mac and cheese, hold the cheese',
-    description: 'Gooey and delicious no cheese blend.',
-    icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/14/0/WU-0103_mac-and-cheese_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382541000580.jpeg',
-    ingredients: [elbowMac, flour, butter],
+    name: 'Thanksgiving Turkey',
+    description: 'Perfect for Thanksgiving with family and friends',
+    icon: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2010/8/12/0/FN-Thanksgiving-2010_Thanksgiving-Turkey_s4x3.jpg.rend.hgtvcom.826.620.suffix/1382539519750.jpeg',
+    ingredients: [t1, t2, t3, t4],
     utensils: [pan, largeDish],
-    steps: [macStep1, macStep2]
+    steps: [tur1, tur2, tur3,tur4,tur5,tur6]
 };
 
 const plan1 = {
