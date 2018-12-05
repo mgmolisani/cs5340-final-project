@@ -178,7 +178,8 @@ class SchedulingModal extends Component {
                             padding: '0.5em',
                             margin: '1em 0.25em 1em 0.25em',
                             fontSize: 22
-                        }}>
+                        }}
+                        onClick={()=> this.props.accept(this.state.dates)}>
                             Accept
                         </button>
                         <button style={{
@@ -191,7 +192,8 @@ class SchedulingModal extends Component {
                             padding: '0.5em',
                             margin: '1em 0.25em 1em 0.25em',
                             fontSize: 22
-                        }}>
+                        }}
+                        onClick={this.props.cancel}>
                             Cancel
                         </button>
                     </div>
