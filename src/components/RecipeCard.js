@@ -23,6 +23,12 @@ export default class RecipeCard
                 flexDirection: 'column',
                 margin: '1em',
                 borderRadius: '0.5em',
+                '&:hover': {
+                    backgroundColor: '#FF725C'
+                },
+                '&:hover div:nth-child(2) div:nth-child(1)': {
+                    backgroundColor: '#FF725C'
+                },
                 backgroundColor: props.selected ? '#F44F46' : 'white',
                 boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
                 height: '25em',

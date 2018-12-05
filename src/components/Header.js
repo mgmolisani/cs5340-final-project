@@ -28,6 +28,9 @@ const Header = props => {
                      })}>
                 <div className={css({
                     display: 'flex',
+                    '& span': {
+                        padding: '0 0.25em'
+                    },
                     '&:hover span': {
                         transform: 'rotate(25deg) translateX(5px)'
                     }

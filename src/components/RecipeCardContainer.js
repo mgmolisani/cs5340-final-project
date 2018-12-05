@@ -4,13 +4,13 @@ import {css} from 'emotion';
 
 const RecipeCardContainer = ({recipes, selectRecipe}) => {
 
-    const myRecipes = recipes.map((recipe, i) => {
-        return <RecipeCard key={recipes[i].id}
-                           id={recipes[i].id}
-                           name={recipes[i].name}
-                           description={recipes[i].description}
-                           icon={recipes[i].icon}
-                           selected={recipes[i].selected}
+    const myRecipes = recipes.map((recipe) => {
+        return <RecipeCard key={recipe.id}
+                           id={recipe.id}
+                           name={recipe.name}
+                           description={recipe.description}
+                           icon={recipe.icon}
+                           selected={recipe.selected}
                            selectRecipe={selectRecipe}/>;
     });
 

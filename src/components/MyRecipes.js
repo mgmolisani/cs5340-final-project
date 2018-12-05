@@ -14,6 +14,7 @@ class MyRecipes extends Component {
             search: '',
             displayModal: false
         };
+        this.clearSelections = this.clearSelections.bind(this);
         this.selectRecipe = this.selectRecipe.bind(this);
         this.switchDisplayModal = this.switchDisplayModal.bind(this);
         this.acceptSchedule = this.acceptSchedule.bind(this);
@@ -22,17 +23,27 @@ class MyRecipes extends Component {
 
     componentDidMount() {
         DataService.findAllRecipes()
-            .then(recipes => this.setState({recipes}));
+            .then(recipes => this.setState({recipes: JSON.parse(JSON.stringify(recipes))}));
     }
 
     switchDisplayModal() {
         this.setState({displayModal: !this.state.displayModal});
     }
 
+    clearSelections() {
+        this.setState((state) => ({
+            recipes: state.recipes.map(recipe => {
+                recipe.selected = false;
+                return recipe;
+            })
+        }))
+    }
+
     acceptSchedule(dates) {
         if (dates.length !== 0) {
-            let moments = dates.map(date => moment(date))
+            let moments = dates.map(date => moment(date));
             this.state.recipes.filter(rec => rec.selected).map(rec => DataService.addRecipeToSchedule(rec.id, moments));
+            this.clearSelections();
             this.switchDisplayModal();
         }
         else{
@@ -54,6 +65,14 @@ class MyRecipes extends Component {
                            backgroundColor: isScheduled ? 'white' : 'red',
                            border: '3px solid red',
                            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
+                           '&:hover': {
+                               color: 'white',
+                               backgroundColor: '#FF725C',
+                           },
+                           '&:active': {
+                               color: 'white',
+                               boxShadow: 'inset 0px 0px 25px 0px rgba(0,0,0,0.75)',
+                           },
                            cursor:'pointer'
                        })}>
             <div className={css({
