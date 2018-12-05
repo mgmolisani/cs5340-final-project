@@ -54,6 +54,7 @@ class MyRecipes extends Component {
                            backgroundColor: isScheduled ? 'white' : 'red',
                            border: '3px solid red',
                            boxShadow: '0px 0px 25px -5px rgba(0,0,0,0.75)',
+                           cursor:'pointer'
                        })}>
             <div className={css({
                 display: 'flex',
