@@ -61,27 +61,24 @@ export default class RecipeListItem extends React.Component {
                      style={{
                          height: '4em',
                          width: '4em',
-                         flex: '0 0 0',
+                         flex: '0 0 auto',
                          borderRadius: '0.5em',
                          objectFit: 'cover'
                      }}/>
                 <div style={{
                     flex: '1 1 auto',
                     padding: '0 0.5em',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
+                    overflow: 'hidden'
                 }}>
                     <h4 style={{
                         overflow: 'hidden',
-                        textOverflow: 'ellipsis',
                         margin: 0
                     }}>
                         {this.props.scheduledRecipe.recipe.name}
                     </h4>
                     <p style={{
                         margin: 0,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        overflow: 'hidden'
                     }}>
                         {this.props.scheduledRecipe.recipe.description}
                     </p>
