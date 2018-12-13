@@ -1,1 +1,1 @@
-# [Application](https://marinara-hands.herokuapp.com/) 
+# [Heroku App](https://marinara-hands.herokuapp.com/) 
